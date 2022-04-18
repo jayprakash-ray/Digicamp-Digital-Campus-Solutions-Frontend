@@ -16,6 +16,11 @@ import { MatTableModule } from '@angular/material/table'
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSortModule} from '@angular/material/sort';
 import {MatInputModule} from '@angular/material/input';
+import { FaceDetectionComponent } from './face-detection/face-detection.component';
+import { PackageFormComponent } from './package-form/package-form.component';
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -23,7 +28,9 @@ import {MatInputModule} from '@angular/material/input';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    PackageComponent
+    PackageComponent,
+    FaceDetectionComponent,
+    PackageFormComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +51,12 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
+  ],
+  entryComponents:[
+    PackageFormComponent
   ],
   exports: [
   ],
