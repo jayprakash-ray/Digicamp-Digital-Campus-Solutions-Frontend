@@ -1,0 +1,34 @@
+---
+- name: Pull docker image of DigiCamp Frontend
+  hosts: all
+  tasks:
+    - name: Stop Docker container
+      docker_container: 
+        name: digicamp
+        state: stopped
+
+    - name: Remove Docker container
+      docker_container: 
+        name: digicamp
+        state: absent 
+        
+    - name: Remove Docker image
+      docker_image:
+        state: absent
+        name: khushalabrol2000/digicamp-frontend
+        tag: latest 
+        
+    - name: Pull devops image
+      docker_image:
+        name: khushalabrol2000/digicamp-frontend
+        source: pull
+
+    - name: deploy digicamp docker container
+      docker_container:
+        image: khushalabrol2000/digicamp-frontend:latest
+        name: digicamp
+        state: started
+        auto_remove: true
+        ports:
+          - "3221:80"
+... 
