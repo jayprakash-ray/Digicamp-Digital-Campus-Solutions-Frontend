@@ -1,0 +1,7 @@
+<div class="container mat-elevation-z10">
+    <mat-grid-list cols="4" rowHeight="fit" style="height:350px" gutterSize="10px">
+        <mat-grid-tile *ngFor="let item of items">
+            <app-card [item]="item"></app-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+</div>

@@ -1,0 +1,13 @@
+.card {
+    min-width: 220px;
+    background-color: aliceblue;
+    color: black;
+}
+
+mat-card-subtitle{
+    color: black;
+}
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    /* background-size: cover; */
+}

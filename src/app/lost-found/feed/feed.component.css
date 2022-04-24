@@ -1,0 +1,11 @@
+.container {
+  margin: auto;
+  height: 85vh;
+  /* margin-top: 5%;
+    margin-bottom: 5%; */
+  padding: 5%;
+}
+
+mat-grid-tile {
+  /* background-color: lightblue; */
+}

@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-9">
+        <h1 mat-dialog-title>{{item.itemName}} &nbsp;<mat-chip style="background-color: red;" *ngIf="item.lostOrFound==0" color="accent">Lost</mat-chip><mat-chip style="background-color: green;" *ngIf="item.lostOrFound==1" color="accent">Found</mat-chip></h1>
+    </div>
+    <div class="col-3">
+        <button class="close" mat-button mat-dialog-close>X</button>
+    </div>
+</div>
+<div mat-dialog-content>
+    <img>
+    <div><b>Found On:</b> {{date}}</div>
+    <div><b>Found At:</b> {{item.foundAt}}</div>
+    <div><b>Collect From:</b> {{item.collectFrom}}</div>
+    <p>{{item.remarks}}</p>
+</div>
+<div class="row">
+    <div class="col-7">
+        <button mat-raised-button>Back</button>
+    </div>
+    <div class="col-5">
+        <button mat-raised-button color="warn" mat-dialog-close="collected">Collected</button>
+    </div>
+</div>

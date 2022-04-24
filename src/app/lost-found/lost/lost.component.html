@@ -1,0 +1,35 @@
+<div class="container mat-elevation-z8">
+  <h2>Enter details of your lost item here:</h2>
+  <form #lostForm="ngForm">
+    <div class="row m-2">
+      <div class="form-group col-6">
+        <label for="name">Item Name:</label>
+        <input type="text" class="form-control" id="name" ngModel name="name" placeholder="Name">
+      </div>
+      <div class="form-group col-6">
+        <label for="foundAt">Lost At:</label>
+        <input type="text" class="form-control" id="foundAt" ngModel name="foundAt" placeholder="Place">
+      </div>
+    </div>
+    <div class="row m-2">
+      <div class="form-group">
+        <label for="remark">Item Details and Remarks</label>
+        <input type="text" class="form-control" id="remark" ngModel name="remark" placeholder="Remark">
+      </div>
+    </div>
+    <div>
+      <div class="row m-2">
+        <div class="form-group col-6">
+          <label for="image">Upload Image</label>
+          <input mat-raised-button color="primary" #imageInput type="file" accept="image/*" (change)="handleFileSelect($event)">
+        </div>
+        <div class="form-group col-6">
+          <img [src]="imagePath" height="200px">
+        </div>
+      </div>
+    </div>
+    <div class="row m-2">
+      <button mat-raised-button color="primary" (click)="submitLost(lostForm)">Submit</button>
+    </div>
+  </form>
+</div>
