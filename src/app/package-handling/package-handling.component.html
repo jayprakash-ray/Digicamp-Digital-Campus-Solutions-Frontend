@@ -1,1 +1,35 @@
-<p>package-handling works!</p>
+<div>
+    <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="packagenumber">
+            <th mat-header-cell *matHeaderCellDef> Score </th>
+            <td mat-cell *matCellDef="let row"> {{row.packagenumber}} </td>
+          </ng-container>
+          <ng-container matColumnDef="orderId">
+            <th mat-header-cell *matHeaderCellDef> orderId </th>
+            <td mat-cell *matCellDef="let row"> {{row.orderId}} </td>
+          </ng-container>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> name </th>
+            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+          </ng-container>
+          <ng-container matColumnDef="courier">
+            <th mat-header-cell *matHeaderCellDef> courier </th>
+            <td mat-cell *matCellDef="let row"> {{courier}} </td>
+          </ng-container>
+          <ng-container matColumnDef="receivingDate">
+            <th mat-header-cell *matHeaderCellDef> courier </th>
+            <td mat-cell *matCellDef="let row"> {{row.receivingDate}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="pickedBy">
+            <th mat-header-cell *matHeaderCellDef> courier </th>
+            <td mat-cell *matCellDef="let row"> {{row.pickedBy}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columns"></tr>
+          <tr mat-row *matRowDef="let row; columns:columns;"></tr>
+
+    </table>
+</div>
+
+
