@@ -1,14 +1,20 @@
 .container {
   margin: auto;
-  height: 85vh;
+  height: 81vh;
   padding: 5%;
 }
 
 .mat-grid-tile {
   /* border: solid 2px #000; */
-  border-radius: 20px;
-  box-shadow: 1px 1px 5px black;
+  /* background-color:"#F0F8FF"; */
+  /* border-radius: 5px; */
+  /* box-shadow: 1px 1px 5px black; */
+  padding: 0%;
   /* height: 40px; */
   /* border: 20px; */
   /* background-color: lightblue; */
+}
+
+.mat-grid-tile-content{
+  display: none;
 }

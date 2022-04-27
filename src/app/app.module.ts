@@ -32,6 +32,7 @@ import { CardComponent } from './lost-found/feed/card/card.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
 import {MatRippleModule} from '@angular/material/core';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import {MatRippleModule} from '@angular/material/core';
     MatGridListModule,
     MatChipsModule,
     FormsModule,
-    MatRippleModule
+    MatRippleModule,
+    FlexLayoutModule
   ],
   entryComponents: [
     PackageFormComponent

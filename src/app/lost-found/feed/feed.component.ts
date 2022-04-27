@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LostFoundService } from 'src/app/_services/lost-found.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { LostFoundService } from 'src/app/_services/lost-found.service';
   styleUrls: ['./feed.component.css']
 })
 export class FeedComponent implements OnInit {
-
+  @ViewChild('gridView') gridView: any;
   items: any;
   constructor(public lfService: LostFoundService) { }
 
@@ -17,5 +17,23 @@ export class FeedComponent implements OnInit {
       console.log(items);
     })
   }
+        
+// columnNum = 3;
+
+// divSize = 900;
+
+// setColNum(div: any){
+//   console.log(div);
+//   if(this.gridView.nativeElement.offsetWidth < 400){
+//     this.columnNum = 1;
+//   }
+//   if(this.gridView.nativeElement.offsetWidth >= 400 
+//       && this.gridView.nativeElement.offsetWidth < 800){
+//     this.columnNum = 2;
+//   }
+//   if(this.gridView.nativeElement.offsetWidth >= 800){
+//     this.columnNum = 3;
+//   }
+// }
 
 }
