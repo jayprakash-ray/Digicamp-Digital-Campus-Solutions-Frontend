@@ -29,9 +29,9 @@ import { FeedComponent } from './lost-found/feed/feed.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
 import { CardComponent } from './lost-found/feed/card/card.component';
-import { InfoFormComponent } from './lost-found/feed/info-form/info-form.component';
 import {MatChipsModule} from '@angular/material/chips';
 import { FormsModule } from '@angular/forms';
+import {MatRippleModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,6 @@ import { FormsModule } from '@angular/forms';
     FoundComponent,
     FeedComponent,
     CardComponent,
-    InfoFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +71,8 @@ import { FormsModule } from '@angular/forms';
     MatTabsModule,
     MatGridListModule,
     MatChipsModule,
-    FormsModule
+    FormsModule,
+    MatRippleModule
   ],
   entryComponents: [
     PackageFormComponent

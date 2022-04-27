@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  centered = false;
+  disabled = false;
+  unbounded = true;
+
+  radius: number;
+  color: string;
   constructor() { }
 
   ngOnInit(): void {

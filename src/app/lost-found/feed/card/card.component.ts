@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { InfoFormComponent } from '../info-form/info-form.component';
 
 @Component({
   selector: 'app-card',
@@ -10,23 +9,24 @@ import { InfoFormComponent } from '../info-form/info-form.component';
 export class CardComponent implements OnInit {
   @Input() item: any;
   constructor(public dialog: MatDialog) { }
-
+  date: any;
   ngOnInit(): void {
+    this.date = this.formatDate(this.item.date);
   }
 
-  getInfo() {
-    const dialogRef = this.dialog.open(InfoFormComponent, {
-      data: this.item,
-      // height: '400px',
-      width: '300px'
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result == 'collected') {
-        //warn
-        //remove item;
-      }
-    })
+  formatDate(date: Date): string {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
 
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+
+    return [year, month, day].join('-');
   }
+
 
 }
