@@ -1,1 +1,43 @@
-<p>header works!</p>
+<mat-toolbar color=primary>
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="toggleSideBar()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <span><nav class="navbar navbar-expand-lg">
+            <div class="align-bottom">
+                <img src="./../../assets/IIITB-invert-logo.png" height="60vh"><a routerLink="/home" style="text-decoration: none; color:aliceblue">
+                   DigiCamp - <i style="font-size: 2vh;">Digital Campus Solutions</i>
+                </a>
+            </div>
+        </nav>
+    </span>
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+            <ul fxLayout="row" fxLayoutGap="20px">
+                <li>
+                    <button mat-icon-button>
+                        <mat-icon>settings</mat-icon>
+                    </button>
+                </li>
+                <li>
+                    <button mat-icon-button>
+                        <mat-icon>help_outline</mat-icon>
+                    </button>
+                </li>
+                <li>
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <mat-icon>person_outline</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <mat-icon>exit_to_app</mat-icon>
+                            Sign out
+                        </button>
+                    </mat-menu>
+
+                </li>
+            </ul>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
