@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultModule } from './layouts/default/default.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [

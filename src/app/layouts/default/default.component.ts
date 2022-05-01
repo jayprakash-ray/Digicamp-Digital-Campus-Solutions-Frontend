@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./default.component.css']
 })
 export class DefaultComponent implements OnInit {
-    sideBarOpen =true;
+  isLoggedIn: boolean = false;
+  sideBarOpen =true;
   constructor() { }
 
   ngOnInit(): void {

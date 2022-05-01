@@ -1,14 +1,24 @@
-<app-header (toggleSideBarForMe)="sideBarToggler()"></app-header>
-
-<mat-drawer-container>
-    <mat-drawer mode="side" [opened]="sideBarOpen">
-        <app-sidebar></app-sidebar>
-    </mat-drawer>
-    <mat-drawer-content>
-        <router-outlet></router-outlet>
-    </mat-drawer-content>
+<!-- <div *ngIf="isLoggedIn"> -->
+    <app-header (toggleSideBarForMe)="sideBarToggler()"></app-header>
     
-</mat-drawer-container>
+    <mat-drawer-container *ngIf="isLoggedIn">
+        <mat-drawer mode="side" [opened]="sideBarOpen">
+            <app-sidebar></app-sidebar>
+        </mat-drawer>
+        <mat-drawer-content>
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+        
+    </mat-drawer-container>
+    
+    <app-login *ngIf="!isLoggedIn"></app-login>
 
-<app-footer></app-footer>
-
+    <app-footer></app-footer>
+<!-- </div>     -->
+<!-- <div *ngIf="!isLoggedIn">
+    <app-header></app-header>
+    
+    <app-login></app-login>
+            
+    <app-footer></app-footer>
+</div> -->
