@@ -1,28 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
-/* 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
-
-body {
-  /* opacity: 0.6; */
-  /* background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("./assets/iiitb_image.jpg"); */
-  /* background-color: #cccccc;
-  background-size: cover; */
- }
-/* 
-.main{
-  background-color: #EFEFEF;
-} */
-
-/* mat-dialog-container {
-    color: black;
-    background-color: mat-tab-group !important;
-  } */
-
-/* div{
-    color: #000;
-} */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
