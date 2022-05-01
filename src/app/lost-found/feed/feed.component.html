@@ -1,9 +1,9 @@
 <div class="container">
-    <mat-grid-list cols="2" gutterSize="30px">
-        <mat-grid-tile *ngFor="let item of items" [style.background]="'#F0F8FF'">
-            <!-- <button> -->
+    <mat-grid-list cols="2" gutterSize="20px">
+        <mat-grid-tile *ngFor="let item of items">
+            <div class="card">
                 <app-card [item]="item"></app-card>
-            <!-- </button> -->
+            </div>
         </mat-grid-tile>
       </mat-grid-list>
 </div>

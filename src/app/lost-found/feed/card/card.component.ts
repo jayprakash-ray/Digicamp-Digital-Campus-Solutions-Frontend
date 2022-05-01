@@ -8,10 +8,11 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CardComponent implements OnInit {
   @Input() item: any;
-  constructor(public dialog: MatDialog) { }
+  constructor() { }
   date: any;
   ngOnInit(): void {
     this.date = this.formatDate(this.item.date);
+    console.log("CARD ITEM: ", this.item);
   }
 
   formatDate(date: Date): string {

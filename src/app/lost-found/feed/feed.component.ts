@@ -14,7 +14,7 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     this.lfService.getItems().subscribe(items => {
       this.items = items;
-      console.log(items);
+      console.log("items: ", items);
     })
   }
 
