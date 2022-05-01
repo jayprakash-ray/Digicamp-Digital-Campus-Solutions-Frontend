@@ -25,6 +25,7 @@
     "angularfire2": "^5.4.2",
     "bootstrap": "^5.1.3",
     "firebase": "^9.6.11",
+    "mdb-angular-ui-kit": "^2.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

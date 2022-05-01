@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
+import { LoginComponent } from './login/login.component';
 import { LostFoundComponent } from './lost-found/lost-found.component';
 import { PackageHandlingComponent } from './package-handling/package-handling.component';
 

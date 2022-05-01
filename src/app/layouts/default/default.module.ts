@@ -7,11 +7,13 @@ import { PackageHandlingComponent } from 'src/app/package-handling/package-handl
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table'
 import { LostFoundModule } from 'src/app/lost-found/lost-found.module';
+import { LoginComponent } from 'src/app/login/login.component';
 
 @NgModule({
   declarations: [
     DefaultComponent,
     PackageHandlingComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,
