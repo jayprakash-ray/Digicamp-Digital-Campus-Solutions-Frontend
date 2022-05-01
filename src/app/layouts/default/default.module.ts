@@ -6,19 +6,20 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PackageHandlingComponent } from 'src/app/package-handling/package-handling.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table'
-
+import { LostFoundModule } from 'src/app/lost-found/lost-found.module';
 
 @NgModule({
   declarations: [
     DefaultComponent,
-    PackageHandlingComponent
+    PackageHandlingComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
+    LostFoundModule,
     MatSidenavModule,
-    MatTableModule
+    MatTableModule,
   ],
   providers: [
 
