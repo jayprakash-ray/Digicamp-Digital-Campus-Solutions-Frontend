@@ -21,14 +21,25 @@
       <td mat-cell *matCellDef="let row"> {{row.courier}} </td>
     </ng-container>
     <ng-container matColumnDef="Receiving Date">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Receiving On </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Arrived On </th>
       <td mat-cell *matCellDef="let row"> {{row.receivingDate}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="pickedOn">
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header> Picked On </th>
+      <td mat-cell *matCellDef="let row"> {{row.pickedOn}} </td>
     </ng-container>
 
     <ng-container matColumnDef="pickedBy">
       <th mat-header-cell *matHeaderCellDef  mat-sort-header> Picked By </th>
       <td mat-cell *matCellDef="let row"> {{row.pickedBy}} </td>
     </ng-container>
+   
+    <ng-container matColumnDef="recieverImage">
+      <th mat-header-cell *matHeaderCellDef  mat-sort-header> Receiver Image </th>
+      <td mat-cell *matCellDef="let row"> {{row.recieverImage}} </td>
+    </ng-container>
+    
 
     <tr mat-header-row *matHeaderRowDef="columns"></tr>
     <tr mat-row *matRowDef="let row; columns:columns;"></tr>

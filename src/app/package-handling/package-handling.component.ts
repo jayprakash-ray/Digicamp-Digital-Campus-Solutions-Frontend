@@ -14,7 +14,7 @@ export class PackageHandlingComponent implements AfterViewInit {
 
   dataSource: MatTableDataSource<Package>;
   courier : Package[];
-  columns: string[] =['packageNumber','OrderId','name','Courier','Receiving Date','pickedBy']
+  columns: string[] =['packageNumber','OrderId','name','Courier','Receiving Date','pickedOn','pickedBy','recieverImage']
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
@@ -26,44 +26,43 @@ export class PackageHandlingComponent implements AfterViewInit {
       name :'Amit Dev Chauhan',
       courier:'FedEX',
       receivingDate:'11/02/2022',
-      pickedBy :'Amit Kumar'
-
+      pickedBy :'Amit Kumar',
+      recieverImage:'Image',
+      pickedOn:'14/02/2022',
+      isPicked:'Yes'
     },
     {
-      packageNumber : 2,
-      orderId: '2435445',
-      name :'Sanchit Patil',
+      packageNumber : 1,
+      orderId: '00001',
+      name :'Amit Dev Chauhan',
       courier:'FedEX',
-      receivingDate:'1-02-2022',
-      pickedBy :'Amit Kumar'
-
+      receivingDate:'11/02/2022',
+      pickedBy :'Amit Kumar',
+      recieverImage:'Image',
+      pickedOn:'14/02/2022',
+      isPicked:'Yes'
     },
     {
-      packageNumber : 3,
-      orderId: '2435445',
-      name :'Kunal Dwivedi',
+      packageNumber : 1,
+      orderId: '00001',
+      name :'Amit Dev Chauhan',
       courier:'FedEX',
-      receivingDate:'12-02-2022',
-      pickedBy :'Amit Kumar'
-
+      receivingDate:'11/02/2022',
+      pickedBy :'Amit Kumar',
+      recieverImage:'Image',
+      pickedOn:'14/02/2022',
+      isPicked:'Yes'
     },
     {
-      packageNumber : 4,
-      orderId: '1112',
-      name :'Khushal Abrol',
+      packageNumber : 1,
+      orderId: '00001',
+      name :'Amit Dev Chauhan',
       courier:'FedEX',
-      receivingDate:'12-02-2022',
-      pickedBy :'Amit Kumar'
-
-    },
-    {
-      packageNumber : 5,
-      orderId: '2435445',
-      name :'Khushal Abrol',
-      courier:'FedEX',
-      receivingDate:'12-02-2022',
-      pickedBy :'Amit Kumar'
-
+      receivingDate:'11/02/2022',
+      pickedBy :'Amit Kumar',
+      recieverImage:'Image',
+      pickedOn:'14/02/2022',
+      isPicked:'Yes'
     },
   ]
   this.dataSource=new MatTableDataSource(this.courier)
