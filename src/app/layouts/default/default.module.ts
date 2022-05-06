@@ -15,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { HomeComponent } from '../home/home.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
 
 
 @NgModule({
@@ -36,8 +38,9 @@ import { HomeComponent } from '../home/home.component';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatButtonModule
-    
+    MatButtonModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [
 
