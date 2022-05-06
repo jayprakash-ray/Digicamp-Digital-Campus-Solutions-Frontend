@@ -1,11 +1,11 @@
 export interface Package {
     packageNumber: number;
-    name:string;
+    ownerName:string;
     courier: string;
-    receivingDate: string;
+    arrivalDate: string;
     orderId:string;
     isPicked: string;
     pickedBy: string;
     pickedOn: string;
-    recieverImage:string;
+    receiverImage:string;
 }

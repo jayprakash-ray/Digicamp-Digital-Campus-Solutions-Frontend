@@ -12,19 +12,19 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Order ID </th>
       <td mat-cell *matCellDef="let row"> {{row.orderId}} </td>
     </ng-container>
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="ownerName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Owner Name </th>
-      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.ownerName}} </td>
     </ng-container>
     <ng-container matColumnDef="Courier">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> courier </th>
       <td mat-cell *matCellDef="let row"> {{row.courier}} </td>
     </ng-container>
-    <ng-container matColumnDef="Receiving Date">
+    <ng-container matColumnDef="arrivalDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Arrived On </th>
-      <td mat-cell *matCellDef="let row"> {{row.receivingDate}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.arrivalDate}} </td>
     </ng-container>
-    
+
     <ng-container matColumnDef="pickedOn">
       <th mat-header-cell *matHeaderCellDef  mat-sort-header> Picked On </th>
       <td mat-cell *matCellDef="let row"> {{row.pickedOn}} </td>
@@ -37,7 +37,7 @@
    
     <ng-container matColumnDef="recieverImage">
       <th mat-header-cell *matHeaderCellDef  mat-sort-header> Receiver Image </th>
-      <td mat-cell *matCellDef="let row"> {{row.recieverImage}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.receiverImage}} </td>
     </ng-container>
     
 
