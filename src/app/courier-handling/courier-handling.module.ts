@@ -8,6 +8,10 @@ import {MatInputModule} from '@angular/material/input'
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table'
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+
+
 @NgModule({
   declarations: [
     CouriersComponent,
@@ -20,7 +24,11 @@ import { MatTableModule } from '@angular/material/table'
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule
+    
 
   ]
 })

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-add-courier',
@@ -11,5 +13,7 @@ export class AddCourierComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  readonly phoneFormControl = new FormControl('', [
+    Validators.required, Validators.pattern(("[6-9]\\d{9}"))
+  ]);
 }
