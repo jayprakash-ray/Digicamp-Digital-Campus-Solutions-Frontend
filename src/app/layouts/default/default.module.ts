@@ -8,6 +8,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table'
 import { LostFoundModule } from 'src/app/lost-found/lost-found.module';
 import { LoginComponent } from 'src/app/login/login.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { LoginComponent } from 'src/app/login/login.component';
     LostFoundModule,
     MatSidenavModule,
     MatTableModule,
+    MatStepperModule
   ],
   providers: [
 
