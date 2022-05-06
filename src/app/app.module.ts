@@ -9,12 +9,13 @@ import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
-import { SignupComponent } from './signup/signup.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +26,8 @@ import { SignupComponent } from './signup/signup.component';
     MdbCheckboxModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    MatFormFieldModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

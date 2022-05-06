@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="container">
   <div class="box-form row">
     <div class="left col-8">
@@ -10,19 +11,25 @@
       <div class="row m-5">
         <h5>Login</h5>
       </div>
-      <br><br><br><br>
+      <br>
       <div class="row m-5">
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
             aria-describedby="basic-addon2">
           <div class="input-group-append">
-            <span class="input-group-text" id="basic-addon2">@iiitb.ac.in</span>
+            <!-- <span class="input-group-text" id="basic-addon2">@iiitb.ac.in</span> -->
           </div>
+        </div>
+          <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password"
+            aria-describedby="basic-addon2">
         </div>
       </div>
       <div class="row m-5">
         <button>Login</button>
+        <span routerLink="/signup">SignUp instead?</span>
       </div>
     </div>
   </div>
 </div>
+<app-footer></app-footer>
