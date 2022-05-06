@@ -10,6 +10,7 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input';
 import { LostFoundModule } from 'src/app/lost-found/lost-found.module';
 import { LoginComponent } from 'src/app/login/login.component';
+import {MatStepperModule} from '@angular/material/stepper';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 @NgModule({
@@ -25,11 +26,11 @@ import {MatSortModule} from '@angular/material/sort';
     LostFoundModule,
     MatSidenavModule,
     MatTableModule,
+    MatStepperModule
     MatFormFieldModule,
     MatInputModule,
     MatPaginatorModule,
     MatSortModule
-
   ],
   providers: [
 
