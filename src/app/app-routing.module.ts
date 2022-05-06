@@ -1,31 +1,26 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
 import { LoginComponent } from './login/login.component';
 import { LostFoundComponent } from './lost-found/lost-found.component';
-// import { PackageHandlingComponent } from './package-handling/package-handling.component';
-// import { CourierHandlingModule } from './courier-handling/courier-handling.module';
-import { CouriersComponent } from './courier-handling/couriers/couriers.component';
-import { AddCourierComponent } from './courier-handling/add-courier/add-courier.component';
-const routes: Routes = [{
-  path: '',
-  component: DefaultComponent,
-  children: [{
-    path: '',
-    component: CouriersComponent
-  },
+import { PackageHandlingComponent } from './package-handling/package-handling.component';
+import { SignupComponent } from './signup/signup.component';
+import { AuthGuard } from './_auth/auth.guard';
+
+const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
   {
-    path: 'addCourier',
-    component: AddCourierComponent
-  },{
-    path: 'lost-found',
-    component: LostFoundComponent
-  }]
-}];
+    path: '', component: DefaultComponent, children: [
+      { path: 'package', component: PackageHandlingComponent, canActivate: [AuthGuard], data: { role: ['student', 'admin'] } },
+      { path: 'lost-found', component: LostFoundComponent, canActivate: [AuthGuard], data: { role: ['student', 'admin'] } }
+    ]
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
+export class AppRoutingModule {
 }

@@ -12,13 +12,16 @@ import { FeedModule } from './feed/feed.module';
 
 import { FormsModule } from '@angular/forms';
 import { LostFoundComponent } from './lost-found.component';
+import { FirebaseModule } from '../firebase/firebase.module';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 
 
 @NgModule({
   declarations: [
     LostComponent,
     FoundComponent,
-    LostFoundComponent
+    LostFoundComponent,
+    UploadImageComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +29,8 @@ import { LostFoundComponent } from './lost-found.component';
     MatGridListModule,
     MatButtonModule,
     FeedModule,
-    FormsModule
+    FormsModule,
+    FirebaseModule
   ], exports: [
     LostComponent,
     FoundComponent
