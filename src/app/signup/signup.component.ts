@@ -5,7 +5,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { WindowService } from '../_services/window.service';
 import { Role } from '../_interfaces/Role';
-import { User } from '../_interfaces/user';
+import { User } from '../_interfaces/User';
 import { LoginComponent } from '../login/login.component';
 import { LoginService } from '../_services/login.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -56,10 +56,10 @@ export class SignupComponent implements OnInit, AfterViewInit {
     
     this.nameFormGroup = this._formBuilder.group({
       name: ['', Validators.required],
+      rollNumber: ['', Validators.required]
     });
     this.mobile1FormGroup = this._formBuilder.group({
       mobile: ['', Validators.required],
-      otp: ['']
     });
     this.mobile2FormGroup = this._formBuilder.group({
       mobile: ['', Validators.required]
@@ -144,6 +144,10 @@ export class SignupComponent implements OnInit, AfterViewInit {
   createAccount(){
     this.role.roleName = 'student';
     this.user.userId = this.emailFormGroup.value.email;
+    this.user.name = this.nameFormGroup.value.name;
+    this.user.rollNumber = this.nameFormGroup.value.rollNumber;
+    this.user.mobile1 = this.mobile1FormGroup.value.mobile;
+    this.user.mobile2 = this.mobile2FormGroup.value.mobile;
     this.user.password = this.passwordFormGroup.value.password;
     this.user.role = this.role;
 
@@ -156,10 +160,11 @@ export class SignupComponent implements OnInit, AfterViewInit {
       )
       this.route.navigate(['/login']);
     }, (error: any) => {
+      console.log(error);
       Swal.fire(
         'Error!',
         'Unable to create user',
-        'success'
+        'error'
       )
     })
 

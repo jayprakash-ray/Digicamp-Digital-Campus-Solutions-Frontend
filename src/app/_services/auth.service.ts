@@ -30,6 +30,14 @@ export class AuthService {
   public getName(): any{
     return localStorage.getItem("name");
   }
+  
+  public setRollNumber(rollNumber: any){
+    localStorage.setItem("rollNumber", rollNumber);
+  }
+
+  public getRollNumber(): any{
+    return localStorage.getItem("rollNumber");
+  }
 
   public setToken(jwtToken: string) {
     localStorage.setItem("jwtToken", jwtToken);

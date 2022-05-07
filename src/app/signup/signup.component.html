@@ -17,11 +17,21 @@
     <mat-step [stepControl]="nameFormGroup">
 
       <form [formGroup]="nameFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Full Name</mat-label>
-          <input matInput placeholder="First name, Last Name" formControlName="name" required>
-        </mat-form-field>
+        <ng-template matStepLabel>Fill out your Name & Roll Number</ng-template>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Full Name</mat-label>
+              <input matInput placeholder="First name, Last Name" formControlName="name" required>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Roll Number</mat-label>
+              <input matInput placeholder="MT202XXXX" formControlName="rollNumber" required>
+            </mat-form-field>
+          </div>
+        </div>
         <div>
           <button mat-button matStepperNext>Next</button>
         </div>
@@ -38,9 +48,9 @@
           <mat-label>Mobile Number</mat-label>
           <input matInput formControlName="mobile" placeholder="9856XXXX62" pattern="[6789][0-9]{9}" required>
         </mat-form-field>
-        <button mat-button (click)="sendOtp(mobile1FormGroup.value.mobile)" class=”button-press”>Get OTP</button>
+        <!-- <button mat-button (click)="sendOtp(mobile1FormGroup.value.mobile)" class=”button-press”>Get OTP</button>
         <input matInput formControlName="otp" class=”get-input” type=”number”>
-        <div id="recaptcha-container"></div>
+        <div id="recaptcha-container"></div> -->
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>

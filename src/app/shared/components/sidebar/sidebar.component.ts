@@ -9,10 +9,14 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class SidebarComponent implements OnInit {
 
   userId: string;
+  name: string;
+  rollNumber: any;
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
     this.userId = this.authService.getId();
+    this.name = this.authService.getName();
+    this.rollNumber = this.authService.getRollNumber;
   }
 
 }

@@ -5,6 +5,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../_services/auth.service';
 import { LoginService } from '../_services/login.service';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'app-login',
@@ -42,6 +43,8 @@ export class LoginComponent implements OnInit {
             this.loginService.tempToken = response.jwtToken;
             this.authService.setId(response.user.userId);
             this.authService.setRole(role);
+            this.authService.setName(response.user.name);
+            this.authService.setRollNumber(response.user.rollNumber);
             this.authService.setToken(response.jwtToken);
             this.router.navigate([`/package`]);
             console.log("response: ", response);
