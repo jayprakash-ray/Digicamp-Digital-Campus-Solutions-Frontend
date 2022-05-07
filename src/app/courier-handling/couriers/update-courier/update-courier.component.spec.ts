@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PackageHandlingComponent } from './package-handling.component';
+import { UpdateCourierComponent } from './update-courier.component';
 
-describe('PackageHandlingComponent', () => {
-  let component: PackageHandlingComponent;
-  let fixture: ComponentFixture<PackageHandlingComponent>;
+describe('UpdateCourierComponent', () => {
+  let component: UpdateCourierComponent;
+  let fixture: ComponentFixture<UpdateCourierComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PackageHandlingComponent ]
+      declarations: [ UpdateCourierComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PackageHandlingComponent);
+    fixture = TestBed.createComponent(UpdateCourierComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

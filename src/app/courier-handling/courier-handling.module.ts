@@ -10,13 +10,17 @@ import {MatSortModule} from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table'
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatButtonModule } from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CouriersModule } from './couriers/couriers.module';
+import { UpdateCourierComponent } from './couriers/update-courier/update-courier.component';
 
 @NgModule({
   declarations: [
-    CouriersComponent,
+    
     CourierHistoryComponent,
-    AddCourierComponent
+    AddCourierComponent,
   ],
   imports: [
     CommonModule,
@@ -27,9 +31,11 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
-    
-
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatDialogModule,
+    CouriersModule
   ]
 })
 export class CourierHandlingModule { }

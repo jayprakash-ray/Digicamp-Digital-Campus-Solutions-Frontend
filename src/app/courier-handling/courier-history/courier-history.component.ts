@@ -12,4 +12,5 @@ export class CourierHistoryComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
 }
