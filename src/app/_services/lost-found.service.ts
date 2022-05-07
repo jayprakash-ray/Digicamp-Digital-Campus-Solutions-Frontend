@@ -19,6 +19,7 @@ export class LostFoundService {
   }
 
   public updateItem(itemDetail: any, itemId: any){
+    console.log("itemDetail: ", itemDetail);
     return this.httpClient.put(`${baseUrl}/lost-found/${itemId}`, itemDetail);
   }
 }

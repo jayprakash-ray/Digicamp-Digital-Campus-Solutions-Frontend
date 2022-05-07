@@ -30,13 +30,14 @@ export class LostComponent implements OnInit {
     this.item.itemName = lostItem.value.name;
     this.item.date = lostItem.value.date;
     this.item.foundAt = lostItem.value.foundAt;
-    this.item.itemImage = this.base64textString;
     this.item.lostOrFound = 0;
     this.item.remarks = lostItem.value.remark;
 
     console.log("this.item: ", this.item);
     this.lostAndFoundService.addItem(this.item).subscribe(res => {
       console.log("Lost Item Added: ", res);
+      this.returnedObj = res;
+      this.upload();
     })
   }
 

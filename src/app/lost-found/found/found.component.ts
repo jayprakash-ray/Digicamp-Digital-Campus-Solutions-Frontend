@@ -30,7 +30,6 @@ export class FoundComponent implements OnInit {
     this.item.itemName = foundItem.value.name;
     this.item.date = foundItem.value.date;
     this.item.foundAt = foundItem.value.foundAt;
-    this.item.itemImage = this.base64textString;
     this.item.lostOrFound = 1;
     this.item.remarks = foundItem.value.remark;
     this.item.collectFrom = foundItem.value.collectFrom;
