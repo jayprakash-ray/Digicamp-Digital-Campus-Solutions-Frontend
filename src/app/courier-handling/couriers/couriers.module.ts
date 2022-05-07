@@ -9,6 +9,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,11 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatMenuModule,
     FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
     ReactiveFormsModule
+
     
   ]
 })

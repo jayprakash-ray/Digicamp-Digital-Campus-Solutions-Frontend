@@ -16,7 +16,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CouriersModule } from './couriers/couriers.module';
 import { UpdateCourierComponent } from './couriers/update-courier/update-courier.component';
 
-
 @NgModule({
   declarations: [
     
@@ -36,6 +35,7 @@ import { UpdateCourierComponent } from './couriers/update-courier/update-courier
     MatButtonModule,
     MatMenuModule,
     MatDialogModule,
+    CouriersModule
   ]
 })
 export class CourierHandlingModule { }

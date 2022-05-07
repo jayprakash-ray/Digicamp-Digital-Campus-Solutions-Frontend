@@ -1,4 +1,3 @@
-<p>Hello</p>
 <mat-form-field>
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. amazon" #input>
@@ -33,26 +32,19 @@
       <th mat-header-cell *matHeaderCellDef> Collect </th>
       <td mat-cell *matCellDef="let row"><button mat-raised-button color="primary">Collect</button></td>
     </ng-container>
-     <!-- <ng-container matColumnDef="Actions">
-      <th mat-header-cell *matHeaderCellDef> Actions </th>
-      <td mat-cell *matCellDef="let row"> <button mat-button [matMenuTriggerFor]="menu" #menuTrigger>Menu</button>
+    <ng-container matColumnDef="edit" stickyEnd>
+      <th mat-header-cell *matHeaderCellDef>Edit</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-raised-button><mat-icon>edit</mat-icon></button>
       </td>
-    </ng-container>     -->
-    <!-- <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="openDialog()">Open dialog</button>
-    </mat-menu> -->
-    <ng-container matColumnDef="Actions" stickyEnd>
-      <th mat-header-cell *matHeaderCellDef>Actions</th>                  
-      <td mat-cell *matCellDef="let user"> 
-         <button mat-icon-button [matMenuTriggerFor]="appMenu" aria-label="">
-             <mat-icon>more_vert</mat-icon>
-         </button>
-         <mat-menu #appMenu>
-           <button mat-menu-item (click)="openDialog()">Delete</button>
-           <button mat-menu-item (click)="openDialog()">Edit</button>
-         </mat-menu>  
-     </td>
-  </ng-container>
+    </ng-container>
+
+    <ng-container matColumnDef="delete" stickyEnd>
+      <th mat-header-cell *matHeaderCellDef>Delete</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-raised-button color="warn"><mat-icon>delete</mat-icon></button>
+      </td>
+    </ng-container>
     <tr mat-header-row *matHeaderRowDef="columns"></tr>
     <tr mat-row *matRowDef="let row; columns:columns;"></tr>
     <!-- Row shown when there is no matching data. -->
