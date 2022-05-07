@@ -1,4 +1,16 @@
-<app-header></app-header>
+<mat-toolbar color=primary>
+  <mat-toolbar-row>
+
+      <span><nav class="navbar-expand-lg">
+          <div class="align-bottom">
+              <img src="./../../assets/IIITB-invert-logo.png" height="60vh"><a routerLink="/home" style="text-decoration: none; color:aliceblue">
+                 DigiCamp - <i style="font-size: 2vh;">Digital Campus Solutions</i>
+              </a>
+          </div>
+      </nav>
+  </span>
+  </mat-toolbar-row>
+</mat-toolbar>
 <div class="container">
   <div class="box-form row">
     <div class="left col-8">
@@ -13,20 +25,20 @@
       </div>
       <br>
       <div class="row m-5">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username"
-            aria-describedby="basic-addon2">
+        <form #loginForm="ngForm" ngNativeValidate>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Recipient's username"  ngModel id="userId" name="userId" required>
           <div class="input-group-append">
             <!-- <span class="input-group-text" id="basic-addon2">@iiitb.ac.in</span> -->
           </div>
         </div>
-          <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password"
-            aria-describedby="basic-addon2">
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Password" ngModel name="userPassword" id="userPassword" required>
         </div>
+      </form>
       </div>
       <div class="row m-5">
-        <button>Login</button>
+        <button (click)="login(loginForm)">Login</button>
         <span routerLink="/signup">SignUp instead?</span>
       </div>
     </div>

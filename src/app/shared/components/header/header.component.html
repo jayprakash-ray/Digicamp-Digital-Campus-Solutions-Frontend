@@ -4,7 +4,7 @@
             <mat-icon>menu</mat-icon>
         </button>
 
-        <span><nav class="navbar navbar-expand-lg">
+        <span><nav class="navbar-expand-lg">
             <div class="align-bottom">
                 <img src="./../../assets/IIITB-invert-logo.png" height="60vh"><a routerLink="/home" style="text-decoration: none; color:aliceblue">
                    DigiCamp - <i style="font-size: 2vh;">Digital Campus Solutions</i>
@@ -30,7 +30,7 @@
                         <mat-icon>person_outline</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="signout()">
                             <mat-icon>exit_to_app</mat-icon>
                             Sign out
                         </button>

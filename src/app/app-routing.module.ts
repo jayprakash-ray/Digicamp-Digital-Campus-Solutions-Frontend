@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CouriersComponent } from './courier-handling/couriers/couriers.component';
 import { DefaultComponent } from './layouts/default/default.component';
 import { LoginComponent } from './login/login.component';
 import { LostFoundComponent } from './lost-found/lost-found.component';
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   {
     path: '', component: DefaultComponent, children: [
-      { path: 'package', component: PackageHandlingComponent, canActivate: [AuthGuard], data: { role: ['student', 'admin'] } },
+      // { path: '', component: CouriersComponent, canActivate: [AuthGuard], data: { role: ['student', 'admin'] } },
+      { path: 'package', component: CouriersComponent, canActivate: [AuthGuard], data: { role: ['student', 'admin'] } },
       { path: 'lost-found', component: LostFoundComponent, canActivate: [AuthGuard], data: { role: ['student', 'admin'] } }
     ]
   }
