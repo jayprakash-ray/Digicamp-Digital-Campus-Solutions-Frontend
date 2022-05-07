@@ -12,29 +12,24 @@ import { LoginService } from '../_services/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  @Output() redirectToSigninPage = new EventEmitter<string>();
   constructor(private loginService: LoginService,
     private authService: AuthService,
     private router: Router,
     private _snackBar: MatSnackBar) { }
   
-  redirectToSignin(){
-    this.redirectToSigninPage.emit(); 
-  }
- 
+
   msg: string = '';
-
-
 
   ngOnInit(): void {
     this.checkLoggedIn();
   }
 
   checkLoggedIn() {
+    console.log("Called:" , this.authService.isLoggedIn());
     if (this.authService.isLoggedIn()) {
       const role: string = this.authService.getRole();
-      if (role === "student") this.router.navigate(['/student']);
-      else if (role === "admin") this.router.navigate(['/admin']);
+      if (role === "student") this.router.navigate(['/package']);
+      else if (role === "admin") this.router.navigate(['/package']);
       console.log("role:", role);
     }
   }
@@ -43,23 +38,14 @@ export class LoginComponent implements OnInit {
     this.loginService.login(loginForm.value).subscribe({
       next: (response: any) => {
         const role = response.user.role.roleName;
-        if (role === 'student') {
-          if (response.user.status === 0) {
+        if (role === 'student' || role === 'admin') {
             this.loginService.tempToken = response.jwtToken;
-            this.router.navigate([`/update-password/${response.user.userId}`]);
-          }
-          else {
             this.authService.setId(response.user.userId);
             this.authService.setRole(role);
             this.authService.setToken(response.jwtToken);
-            this.router.navigate(['/student']);
-          }
-        } else if (role === 'admin') {
-          this.authService.setId(response.user.userId);
-          this.authService.setRole(role);
-          this.authService.setToken(response.jwtToken);
-          this.router.navigate(['/admin']);
-        } else {
+            this.router.navigate([`/package`]);
+            console.log("response: ", response);
+        }else {
           this.router.navigate(['/login']);
         }
       },

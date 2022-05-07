@@ -1,14 +1,20 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { pathToFileURL } from 'url';
-import { getAuth, RecaptchaVerifier, onAuthStateChanged } from "firebase/auth";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import { WindowService } from '../_services/window.service';
+import { Role } from '../_interfaces/Role';
+import { User } from '../_interfaces/user';
+import { LoginComponent } from '../login/login.component';
+import { LoginService } from '../_services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 // import * as firebase from 'firebase/compat';
 // import { AngularFireAuth } from '@angular/fire/auth';
 // import { AngularFirestore } from '@angular/fire/firestore';
 // import { AngularFireDatabaseModule } from '@angular/fire/database';
+import Swal from 'sweetalert2'; 
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -20,11 +26,14 @@ export class SignupComponent implements OnInit, AfterViewInit {
   emailFormGroup: FormGroup;
   mobile1FormGroup: FormGroup;
   mobile2FormGroup: FormGroup;
+  passwordFormGroup: FormGroup;
   isOptional = false;
   emailNotValid = true;
   mobile1NotValid = true;
   mobile2NotValid = true;
   mobile1Verified = false;
+  isPasswordValid = false;
+  isConfirmPasswordValid = false;
   auth: any;
 
   otpSent: boolean = false
@@ -33,8 +42,13 @@ export class SignupComponent implements OnInit, AfterViewInit {
   recaptchaVerifier: any;
   confirmationResult: any;
   windowRef: any;
+
+  user: User = ({} as any) as User;
+  role: Role = ({} as any) as Role;
   constructor(private _formBuilder: FormBuilder, 
-    public windowService: WindowService) {
+    public windowService: WindowService,
+    public loginService: LoginService,
+    private route:Router) {
   }
   
   ngOnInit() {
@@ -53,6 +67,10 @@ export class SignupComponent implements OnInit, AfterViewInit {
     this.emailFormGroup = this._formBuilder.group({
       email: ['', Validators.required],
     });
+    this.passwordFormGroup = this._formBuilder.group({
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+    })
   }
 
 
@@ -107,8 +125,45 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   }
 
+  checkPassword(){
+    if(this.passwordFormGroup.value.password.length>7){
+      this.isPasswordValid = true;
+      return;
+    }
+    this.isPasswordValid = false;
+  }
+
+  confirmPassword(){
+    if(this.passwordFormGroup.value.password===this.passwordFormGroup.value.confirmPassword){
+      this.isConfirmPasswordValid = true;
+      return;
+    }
+    this.isConfirmPasswordValid = false;
+  }
+  
+  createAccount(){
+    this.role.roleName = 'student';
+    this.user.userId = this.emailFormGroup.value.email;
+    this.user.password = this.passwordFormGroup.value.password;
+    this.user.role = this.role;
+
+    this.loginService.createUser(this.user).subscribe( (res: any) => {
+      console.log("user create");
+      Swal.fire(
+        'User Created!',
+        '',
+        'success'
+      )
+      this.route.navigate(['/login']);
+    }, (error: any) => {
+      Swal.fire(
+        'Error!',
+        'Unable to create user',
+        'success'
+      )
+    })
+
+  }
 }
-function ngAfterViewInit() {
-  throw new Error('Function not implemented.');
-}
+
 
