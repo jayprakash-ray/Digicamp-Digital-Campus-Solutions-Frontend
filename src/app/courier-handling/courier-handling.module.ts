@@ -13,8 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
-
-
+import { CouriersModule } from './couriers/couriers.module';
+import { UpdateCourierComponent } from './couriers/update-courier/update-courier.component';
 
 
 @NgModule({
@@ -22,7 +22,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     
     CourierHistoryComponent,
     AddCourierComponent,
-    CouriersComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +35,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
   ]
 })
 export class CourierHandlingModule { }

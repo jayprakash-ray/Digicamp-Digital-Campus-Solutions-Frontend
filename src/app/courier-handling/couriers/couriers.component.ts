@@ -7,6 +7,7 @@ import { Package } from "../../_interfaces/Package";
 import { PackageHandlingService } from '../../_services/package-handling.service';
 import {MatMenuTrigger} from '@angular/material/menu';
 import { AddCourierComponent } from '../add-courier/add-courier.component';
+import { UpdateCourierComponent } from './update-courier/update-courier.component';
 
 
 @Component({
@@ -37,7 +38,7 @@ export class CouriersComponent implements OnInit{
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(CouriersComponent, {restoreFocus: false});
+    const dialogRef = this.dialog.open(UpdateCourierComponent, {restoreFocus: false});
 
     // Manually restore focus to the menu trigger since the element that
     // opens the dialog won't be in the DOM any more when the dialog closes.
@@ -98,7 +99,7 @@ export class CouriersComponent implements OnInit{
         case 'isPicked':
           return compare(a.isPicked, b.isPicked, isAsc);
         case 'mobileNo':
-          return compare(a.isPicked, b.isPicked, isAsc);
+          return compare(a.mobileNo, b.mobileNo, isAsc);
         default:
           return 0;
       }

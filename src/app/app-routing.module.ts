@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddCourierComponent } from './courier-handling/add-courier/add-courier.component';
+import { CourierHandlingModule } from './courier-handling/courier-handling.module';
+import { CourierHistoryComponent } from './courier-handling/courier-history/courier-history.component';
 import { CouriersComponent } from './courier-handling/couriers/couriers.component';
 import { DefaultComponent } from './layouts/default/default.component';
 import { LoginComponent } from './login/login.component';
@@ -13,8 +16,9 @@ const routes: Routes = [
   {
     path: '', component: DefaultComponent, children: [
       { path: '', component: CouriersComponent, canActivate: [AuthGuard], data: { role: ['student', 'admin'] } },
-      { path: 'package', component: CouriersComponent, canActivate: [AuthGuard], data: { role: ['student', 'admin'] } },
-      { path: 'lost-found', component: LostFoundComponent, canActivate: [AuthGuard], data: { role: ['student', 'admin'] } }
+      { path: 'lost-found', component: LostFoundComponent, canActivate: [AuthGuard], data: { role: ['student', 'admin'] } },
+      { path: 'add-courier', component: AddCourierComponent, canActivate: [AuthGuard], data: { role: ['student', 'admin'] } },
+      { path: 'history', component: CourierHistoryComponent, canActivate: [AuthGuard], data: { role: ['student', 'admin'] } }
     ]
   }
 ];

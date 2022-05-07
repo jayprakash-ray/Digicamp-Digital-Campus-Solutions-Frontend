@@ -1,36 +1,57 @@
-<div class="container">
-    <h2>Enter Courier Details</h2>
-    <form #foundForm="ngForm" >
-        <mat-form-field style="width:30vw" appearance="outline">
-            <mat-label>Owner Name</mat-label>
-            <input matInput placeholder="Owner Name">
-            <mat-icon matSuffix>accessibility_new</mat-icon>
-            <mat-hint>Ex. Jayprakash</mat-hint>
-        </mat-form-field> 
-        <mat-form-field style="width:30vw" appearance="outline">
-            <mat-label>Mobile Number</mat-label>
-            <input matInput placeholder="Mobile Numer" [formControl]="phoneFormControl">
-            <mat-icon matSuffix>contact_phone</mat-icon>
-            <mat-hint>Ex. 913213892</mat-hint>
-        </mat-form-field>
-        <mat-form-field style="width:30vw" appearance="outline">
-            <mat-label>Delivery Partner</mat-label>
-            <input matInput placeholder="Mobile Numer">
-            <mat-icon matSuffix>accessible</mat-icon>
-            <mat-hint>Ex. 913213892</mat-hint>
-        </mat-form-field>
-        <mat-form-field style="width:30vw" appearance="outline">
-            <mat-label>Order ID</mat-label>
-            <input matInput placeholder="Mobile Numer">
-            <mat-icon matSuffix>new_releases</mat-icon>
-            <mat-hint>Ex. 913213892</mat-hint>
-        </mat-form-field>
-        <mat-form-field style="width:30vw" appearance="outline">
-            <mat-label>Arrived Date</mat-label>
-            <input matInput type="datetime-local" placeholder="Arrival date">
-            <mat-hint>Ex. Choose Date</mat-hint>
-        </mat-form-field>
-        
-       
-    </form>
+<div class="container mat-elevation-z9">
+    <div class="row">
+        <h2>Enter Courier Details</h2>
+    </div>
+    <div class="row">
+        <form #courierForm="ngForm">
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field style="width:30vw" appearance="outline">
+                        <mat-label>Owner Name</mat-label>
+                        <input matInput ngModel name="ownerName" placeholder="Owner Name">
+                        <mat-icon matSuffix>accessibility_new</mat-icon>
+                        <mat-hint>Ex. Jayprakash</mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field style="width:30vw" appearance="outline">
+                        <mat-label>Mobile Number</mat-label>
+                        <input matInput ngModel name="mobileNo" placeholder="Mobile Numer" pattern="[6789][0-9]{9}">
+                        <mat-icon matSuffix>contact_phone</mat-icon>
+                        <mat-hint>Ex. 913213892</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field style="width:30vw" appearance="outline">
+                        <mat-label>Delivery Partner</mat-label>
+                        <input matInput ngModel name="delpartner" placeholder="Delivery Partner">
+                        <mat-icon matSuffix>accessible</mat-icon>
+                        <mat-hint>Ex. 913213892</mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field style="width:30vw" appearance="outline">
+                        <mat-label>Order ID</mat-label>
+                        <input matInput ngModel name="orderId" placeholder="Order ID">
+                        <mat-icon matSuffix>new_releases</mat-icon>
+                        <mat-hint>Ex. 913213892</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field style="width:30vw" appearance="outline">
+                        <mat-label>Arrived Date</mat-label>
+                        <input matInput ngModel name="arrivalDate" type="datetime-local" placeholder="Arrival date">
+                        <mat-hint>Ex. Choose Date</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row submit" style="margin:auto;">
+                <button mat-raised-button color="primary" (click)="addCourier(courierForm)">Submit</button>
+            </div>
+        </form>
+    </div>
 </div>
