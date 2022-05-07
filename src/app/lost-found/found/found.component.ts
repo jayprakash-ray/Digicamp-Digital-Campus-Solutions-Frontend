@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Item } from 'src/app/_interfaces/Item';
 import { FileUpload, FirebaseService } from 'src/app/_services/firebase.service';
@@ -19,7 +19,8 @@ export class FoundComponent implements OnInit {
   currentFileUpload?: FileUpload;
   percentage = 0;
   fileUploads?: any[];
-
+  @Output() changeTab = new EventEmitter<string>();
+  
   constructor(private _sanitizer: DomSanitizer, private firebaseService: FirebaseService, public lostAndFoundService: LostFoundService) { }
 
   ngOnInit(): void {
@@ -55,13 +56,20 @@ export class FoundComponent implements OnInit {
           .subscribe(
             percentage => {
               this.percentage = Math.round(percentage ? percentage : 0);
-          },
+              this.changeTabFunction("feed");
+            },
             (error: any) => {
               console.log(error);
             }
           );
+      }else{
+        this.changeTabFunction("feed");
       }
     }
+  }
+
+  changeTabFunction(value: string) {
+    this.changeTab.emit(value);
   }
 
   handleFileSelect(evt: any) {
