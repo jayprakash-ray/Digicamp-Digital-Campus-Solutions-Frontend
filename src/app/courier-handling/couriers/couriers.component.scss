@@ -1,12 +1,16 @@
-
-  .mat-card {
-    overflow: hidden;
-  }
-
 table {
   width: 100%;
+  border: 1px solid currentColor;
 }
 .mat-form-field {
   font-size: 14px;
   width: 100%;
+  
+}
+.mat-header-row
+{
+  width: 32px;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid currentColor;
 }

@@ -5,7 +5,6 @@ export interface Package {
     arrivalDate: string;
     orderId:string;
     isPicked: string;
-    pickedBy: string;
-    pickedOn: string;
-    receiverImage:string;
+    mobileNo:string;
+  
 }
