@@ -145,9 +145,9 @@ export class SignupComponent implements OnInit, AfterViewInit {
     this.role.roleName = 'student';
     this.user.userId = this.emailFormGroup.value.email;
     this.user.name = this.nameFormGroup.value.name;
-    this.user.rollNumber = this.nameFormGroup.value.rollNumber;
     this.user.mobile1 = this.mobile1FormGroup.value.mobile;
     this.user.mobile2 = this.mobile2FormGroup.value.mobile;
+    this.user.rollNumber = this.nameFormGroup.value.rollNumber;
     this.user.password = this.passwordFormGroup.value.password;
     this.user.role = this.role;
 
@@ -163,7 +163,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
       console.log(error);
       Swal.fire(
         'Error!',
-        'Unable to create user',
+        `${error.message}`,
         'error'
       )
     })

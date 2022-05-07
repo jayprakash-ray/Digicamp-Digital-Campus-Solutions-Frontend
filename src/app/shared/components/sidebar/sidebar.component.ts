@@ -16,7 +16,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.authService.getId();
     this.name = this.authService.getName();
-    this.rollNumber = this.authService.getRollNumber;
+    this.rollNumber = this.authService.getRollNumber();
   }
 
 }
