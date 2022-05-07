@@ -16,4 +16,9 @@ export class PackageHandlingService {
   public addPackage(itemDetail: any){
     return this.httpClient.post(`${baseUrl}/package`, itemDetail);
   }
+
+  public updatePackage(itemDetail: any){
+    return this.httpClient.put(`${baseUrl}/package`, itemDetail);
+  }
+ 
 }
