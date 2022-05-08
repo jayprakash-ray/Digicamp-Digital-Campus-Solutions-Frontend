@@ -40,6 +40,7 @@ export class LostComponent implements OnInit {
       console.log("Lost Item Added: ", res);
       this.returnedObj = res;
       this.upload();
+      this.changeTabFunction("feed");
     })
   }
   
@@ -62,14 +63,14 @@ export class LostComponent implements OnInit {
           .subscribe(
             percentage => {
               this.percentage = Math.round(percentage ? percentage : 0);
-              this.changeTabFunction("feed");
+              // this.changeTabFunction("feed");
             },
             (error: any) => {
               console.log(error);
             }
           );
       }else{
-        this.changeTabFunction("feed");
+        // this.changeTabFunction("feed");
       }
     }
   }

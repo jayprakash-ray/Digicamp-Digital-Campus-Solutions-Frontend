@@ -14,6 +14,10 @@ export class LostFoundService {
     return this.httpClient.get(`${baseUrl}/lost-found`);
   }
 
+  public getNotCollectedItems(){
+    return this.httpClient.get(`${baseUrl}/lost-found/not-collected`);
+  }
+
   public addItem(itemDetail: any){
     return this.httpClient.post(`${baseUrl}/lost-found`, itemDetail);
   }

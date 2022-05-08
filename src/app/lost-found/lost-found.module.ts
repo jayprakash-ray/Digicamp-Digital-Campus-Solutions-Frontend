@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FeedComponent } from './feed/feed.component';
 import { LostComponent } from './lost/lost.component';
 import { FoundComponent } from './found/found.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {MatButtonModule} from '@angular/material/button';
 
 import { FeedModule } from './feed/feed.module';
 
@@ -30,7 +31,9 @@ import { UploadImageComponent } from './upload-image/upload-image.component';
     MatButtonModule,
     FeedModule,
     FormsModule,
-    FirebaseModule
+    FirebaseModule,
+
+    MatIconModule
   ], exports: [
     LostComponent,
     FoundComponent
