@@ -31,12 +31,13 @@ export class FirebaseService {
           item.itemImage = downloadURL;
           fileUpload.name = fileUpload.file.name;
           this.saveFileData(fileUpload);
+          console.log("item: ", item);
           this.lostAndFoundService.updateItem(item, item.itemId).subscribe(
             res => {
               console.log("Item Updated: ", res);
             },
             (error: any) => {
-              console.log("Error in Upload");
+              console.log("Error in Updating Image Link");
             }
           );
         });
