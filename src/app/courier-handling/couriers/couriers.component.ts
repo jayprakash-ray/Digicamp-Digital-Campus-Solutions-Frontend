@@ -36,8 +36,19 @@ export class CouriersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getData()
+  }
+
+  getData(){
     this.pkgService.getPackages().subscribe(items => {
       this.courier = items;
+      var unpickedCourier = [];
+      for(var item of this.courier){
+        if(item.isPicked==0){
+          unpickedCourier.push(item);
+        }
+      }
+      this.courier = unpickedCourier;
       console.log("items: ", this.courier);
       this.dataSource = new MatTableDataSource(this.courier)
       this.dataSource.paginator = this.paginator;
@@ -84,6 +95,7 @@ export class CouriersComponent implements OnInit {
             this.pkgService.updatePackage(element).subscribe((res:any) => {
             }, (error: any) => {
               console.log("Error in updatePackage", error);
+              this.getData();
             })
           } else {
             Swal.fire(
@@ -91,6 +103,7 @@ export class CouriersComponent implements OnInit {
               `Invalid OTP!`,
               'error'
             )
+            this.getData();
           }
           console.log(`Dialog result OTP: ${OTP}`);
         });
