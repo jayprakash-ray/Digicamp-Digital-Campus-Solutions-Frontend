@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 // import { AngularFireAuth } from '@angular/fire/auth';
 // import { AngularFirestore } from '@angular/fire/firestore';
 // import { AngularFireDatabaseModule } from '@angular/fire/database';
-import Swal from 'sweetalert2'; 
+import Swal from 'sweetalert2';
 import { Router, RouterLink } from '@angular/router';
 import { EmailAuthenticationService } from '../_services/email-authentication.service';
 import { OTP } from '../_interfaces/OTP';
@@ -49,16 +49,16 @@ export class SignupComponent implements OnInit, AfterViewInit {
   user: User = ({} as any) as User;
   role: Role = ({} as any) as Role;
   otp: OTP = ({} as any) as OTP;
-  constructor(private _formBuilder: FormBuilder, 
+  constructor(private _formBuilder: FormBuilder,
     public windowService: WindowService,
     public loginService: LoginService,
     public emailAuthenticationService: EmailAuthenticationService,
-    private route:Router) {
+    private route: Router) {
   }
-  
+
   ngOnInit() {
     this.windowRef = this.windowService.windowRef;
-    
+
     this.nameFormGroup = this._formBuilder.group({
       name: ['', Validators.required],
       rollNumber: ['', Validators.required]
@@ -91,12 +91,12 @@ export class SignupComponent implements OnInit, AfterViewInit {
     // }, auth);
 
     this.windowRef.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-        'size': 'normal',
-        'callback': (response: any) => {
+      'size': 'normal',
+      'callback': (response: any) => {
 
-        }
-      });
-      this.windowRef.recaptchaVerifier.render();
+      }
+    });
+    this.windowRef.recaptchaVerifier.render();
   }
 
   emailDomainCheck() {
@@ -131,23 +131,23 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   // }
 
-  checkPassword(){
-    if(this.passwordFormGroup.value.password.length>7){
+  checkPassword() {
+    if (this.passwordFormGroup.value.password.length > 7) {
       this.isPasswordValid = true;
       return;
     }
     this.isPasswordValid = false;
   }
 
-  confirmPassword(){
-    if(this.passwordFormGroup.value.password===this.passwordFormGroup.value.confirmPassword){
+  confirmPassword() {
+    if (this.passwordFormGroup.value.password === this.passwordFormGroup.value.confirmPassword) {
       this.isConfirmPasswordValid = true;
       return;
     }
     this.isConfirmPasswordValid = false;
   }
-  
-  createAccount(){
+
+  createAccount() {
     this.role.roleName = 'student';
     this.user.userId = this.emailFormGroup.value.email;
     this.user.name = this.nameFormGroup.value.name;
@@ -157,7 +157,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
     this.user.password = this.passwordFormGroup.value.password;
     this.user.role = this.role;
 
-    this.loginService.createUser(this.user).subscribe( (res: any) => {
+    this.loginService.createUser(this.user).subscribe((res: any) => {
       console.log("user create");
       Swal.fire(
         'User Created!',
@@ -176,45 +176,44 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   }
 
-id: number;
+  id: number;
 
-  sendOtp(){
+  sendOtp() {
     var min = 1000000;
     var max = 9999999;
     this.id = Math.floor(Math.random() * (max - min + 1)) + min;
-  this.emailAuthenticationService.getOTP(this.id, this.emailFormGroup.value.email).subscribe((res: any) => {
-    console.log("getOTP", res);
-  }, (error: any) => {
-    console.log("error in getOTP: ", error);
-  })
-}
+    this.emailAuthenticationService.getOTP(this.id, this.emailFormGroup.value.email).subscribe(
+      (res: any) => {
+        console.log("getOTP", res);
+      }, (error: any) => {
+        console.log("error in getOTP: ", error);
+      })
+  }
 
-verifyOtp(){
+  verifyOtp() {
+    this.otp.id = this.id;
+    this.otp.otp = this.emailFormGroup.value.otp;
+    this.emailAuthenticationService.sendOTP(this.otp).subscribe((res: any) => {
+      if (res == 0) {
+        this.optVerified = true;
+        Swal.fire(
+          'Success!',
+          `OTP Verified`,
+          'success'
+        )
 
-  // var otp = 
-  this.otp.id = this.id;
-  this.otp.otp = this.emailFormGroup.value.otp;
-  this.emailAuthenticationService.sendOTP(this.otp).subscribe((res: any) => {
-    if(res==0){
-      this.optVerified = true;
-      Swal.fire(
-        'Success!',
-        `OTP Verified`,
-        'success'
-      )
-
-    }else{
-      Swal.fire(
-        'Error!',
-        `Invalid OTP!`,
-        'error'
-      )
-    }
-    console.log("sendOTP", res);
-  }, (error: any) => {
-    console.log("error in sendOTP: ", error);
-  })
-}
+      } else {
+        Swal.fire(
+          'Error!',
+          `Invalid OTP!`,
+          'error'
+        )
+      }
+      console.log("sendOTP", res);
+    }, (error: any) => {
+      console.log("error in sendOTP: ", error);
+    })
+  }
 
 }
 

@@ -12,6 +12,7 @@ import { environment } from 'src/environments/environment';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     AngularFireDatabaseModule,
     MatFormFieldModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

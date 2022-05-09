@@ -16,13 +16,16 @@ export class EmailAuthenticationService {
 
   getOTP(id: any, email: any)
   {
-      return this.http.get(`${baseUrl}/OTP/${id}/${email}`);
+      return this.http.get(`${baseUrl}/OTP/email/${id}/${email}`);
   }
 
   sendOTP(otp: any){
     return this.http.post(`${baseUrl}/OTP`, otp);  
   }
 
+  getEmailOTPFromMobileNumber(id: any, mobile: any){
+    return this.http.get(`${baseUrl}/OTP/mobile/${id}/${mobile}`);
+  }
 
 }
 

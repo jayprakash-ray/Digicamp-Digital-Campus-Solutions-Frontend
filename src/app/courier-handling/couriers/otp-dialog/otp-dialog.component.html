@@ -1,0 +1,16 @@
+<button class="close" mat-button mat-dialog-close>X</button>
+<h1 mat-dialog-title>OTP Verification</h1>
+<div class="">
+    <form #otpForm="ngForm">
+        <p>Please entered OTP send on your registered email:</p>
+        <div class="row form-group">
+            <div class="col-6">
+                <input mdbInput ngModel name="otp" class=”form-control” type=”number” required pattern="[0-9]{6}">
+            </div>
+            <div class="col-6">
+                <button mat-raised-button color="warn" [mat-dialog-close]="otpForm.value.otp">Verify
+                    OTP</button>
+            </div>
+        </div>
+    </form>
+</div>
