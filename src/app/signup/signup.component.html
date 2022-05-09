@@ -1,14 +1,16 @@
 <mat-toolbar color=primary>
   <mat-toolbar-row>
 
-      <span><nav class="navbar-expand-lg">
-          <div class="align-bottom">
-              <img src="./../../assets/IIITB-invert-logo.png" height="60vh"><a routerLink="/home" style="text-decoration: none; color:aliceblue">
-                 DigiCamp - <i style="font-size: 2vh;">Digital Campus Solutions</i>
-              </a>
-          </div>
+    <span>
+      <nav class="navbar-expand-lg">
+        <div class="align-bottom">
+          <img src="./../../assets/IIITB-invert-logo.png" height="60vh"><a routerLink="/home"
+            style="text-decoration: none; color:aliceblue">
+            DigiCamp - <i style="font-size: 2vh;">Digital Campus Solutions</i>
+          </a>
+        </div>
       </nav>
-  </span>
+    </span>
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="container mat-elevation-z9 signup" style="overflow-y: scroll;">
@@ -36,9 +38,9 @@
           <button mat-button matStepperNext>Next</button>
         </div>
       </form>
-      
+
     </mat-step>
-    
+
 
     <mat-step [stepControl]="mobile1FormGroup">
 
@@ -48,9 +50,6 @@
           <mat-label>Mobile Number</mat-label>
           <input matInput formControlName="mobile" placeholder="9856XXXX62" pattern="[6789][0-9]{9}" required>
         </mat-form-field>
-        <!-- <button mat-button (click)="sendOtp(mobile1FormGroup.value.mobile)" class=”button-press”>Get OTP</button>
-        <input matInput formControlName="otp" class=”get-input” type=”number”>
-        <div id="recaptcha-container"></div> -->
         <div>
           <button mat-button matStepperPrevious>Back</button>
           <button mat-button matStepperNext>Next</button>
@@ -76,56 +75,68 @@
     </mat-step>
 
     <mat-step [stepControl]="emailFormGroup">
-      
       <form [formGroup]="emailFormGroup">
-        <ng-template matStepLabel>Fill out your IIITB email</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" placeholder="student@iiitb.ac.in" (change)="emailDomainCheck()"
-            required>
-        </mat-form-field>
+        <ng-template matStepLabel>Fill out your IIITB email (Domain must be @iiitb.ac.in)</ng-template>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" placeholder="student@iiitb.ac.in" (change)="emailDomainCheck()"
+                required>
+            </mat-form-field>
+            <button mat-button (click)="sendOtp()" class=”button-press”>Get OTP</button>
+          </div>
+          <div class="col-6" *ngIf="!emailNotValid">
+            <mat-form-field>
+              <mat-label>OTP</mat-label>
+              <input matInput formControlName="otp" class=”get-input” type=”number” required pattern="[0-9]{6}">
+            </mat-form-field>
+            <button mat-button (click)="verifyOtp()" class=”button-press”>Verify OTP</button>
+          </div>
+        </div>
         <div>
           <button mat-button matStepperPrevious>Back</button>
-          <button [disabled]="emailNotValid" mat-button matStepperNext>Next</button>
+          <button [disabled]="emailNotValid || !optVerified" mat-button matStepperNext
+            matTooltip="Verify OTP before proceeding!">Next</button>
         </div>
       </form>
     </mat-step>
 
-<mat-step>
-  <form [formGroup]="passwordFormGroup">
-    <ng-template matStepLabel>Create Password</ng-template>
-    <div class="row">
-      <div class="col-6">
-        <mat-form-field appearance="fill">
-          <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password" placeholder="Password" (change)="checkPassword()"
-            required>
-        </mat-form-field>
-      </div>
-      <div class="col-6">
-        <mat-form-field appearance="fill">
-          <mat-label>Confirm Password</mat-label>
-          <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password" (change)="confirmPassword()"
-            required>
-        </mat-form-field>
-      </div>
-    </div>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button [disabled]="!isConfirmPasswordValid || !isPasswordValid" mat-button matStepperNext>Next</button>
-    </div>
-  </form>
-</mat-step>
+    <mat-step>
+      <form [formGroup]="passwordFormGroup">
+        <ng-template matStepLabel>Create Password</ng-template>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Password</mat-label>
+              <input matInput type="password" formControlName="password" placeholder="Password"
+                (change)="checkPassword()" required>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Confirm Password</mat-label>
+              <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password"
+                (change)="confirmPassword()" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button [disabled]="!isConfirmPasswordValid || !isPasswordValid" mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
 
     <mat-step [stepControl]="emailFormGroup">
       <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done. Just verify your email ID by clicking on the link send to you!</p>
+      <!-- <p>You are now done. Just verify your email ID by clicking on the link send to you!</p> -->
       <div>
         <button routerLinkActive="list-item-active" mat-button (click)="createAccount()">Create Account</button>
         <button mat-button matStepperPrevious>Back</button>
       </div>
     </mat-step>
-  
+
   </mat-stepper>
 </div>
 <div class="mat-elevation-10">

@@ -15,6 +15,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 // import { AngularFireDatabaseModule } from '@angular/fire/database';
 import Swal from 'sweetalert2'; 
 import { Router, RouterLink } from '@angular/router';
+import { EmailAuthenticationService } from '../_services/email-authentication.service';
+import { OTP } from '../_interfaces/OTP';
 
 @Component({
   selector: 'app-signup',
@@ -34,20 +36,23 @@ export class SignupComponent implements OnInit, AfterViewInit {
   mobile1Verified = false;
   isPasswordValid = false;
   isConfirmPasswordValid = false;
+  optVerified = false;
   auth: any;
 
   otpSent: boolean = false
   phoneNumber = null;
-  otp = null
+  // otp = null
   recaptchaVerifier: any;
   confirmationResult: any;
   windowRef: any;
 
   user: User = ({} as any) as User;
   role: Role = ({} as any) as Role;
+  otp: OTP = ({} as any) as OTP;
   constructor(private _formBuilder: FormBuilder, 
     public windowService: WindowService,
     public loginService: LoginService,
+    public emailAuthenticationService: EmailAuthenticationService,
     private route:Router) {
   }
   
@@ -66,6 +71,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
     });
     this.emailFormGroup = this._formBuilder.group({
       email: ['', Validators.required],
+      otp: ['', Validators.required]
     });
     this.passwordFormGroup = this._formBuilder.group({
       password: ['', Validators.required],
@@ -104,26 +110,26 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
 
 
-  sendOtp(mobile: any) {
-    firebase.auth().signInWithPhoneNumber('+91' + mobile, this.recaptchaVerifier)
-      .then((confirmationResult: any) => {
-        // SMS sent. Prompt user to type the code from the message, then sign the
-        // user in with confirmationResult.confirm(code).
-        this.confirmationResult = confirmationResult;
-        this.otpSent = true;
-      }).catch((err: any) => {
-        console.log(err)
-      })
+  // sendOtp(mobile: any) {
+  //   firebase.auth().signInWithPhoneNumber('+91' + mobile, this.recaptchaVerifier)
+  //     .then((confirmationResult: any) => {
+  //       // SMS sent. Prompt user to type the code from the message, then sign the
+  //       // user in with confirmationResult.confirm(code).
+  //       this.confirmationResult = confirmationResult;
+  //       this.otpSent = true;
+  //     }).catch((err: any) => {
+  //       console.log(err)
+  //     })
 
-  }
+  // }
 
-  signIn() {
+  // signIn() {
 
-    // this.confirmationResult.confirm(this.otp).then(user=>{
+  //   // this.confirmationResult.confirm(this.otp).then(user=>{
 
-    // console.log(user)
+  //   // console.log(user)
 
-  }
+  // }
 
   checkPassword(){
     if(this.passwordFormGroup.value.password.length>7){
@@ -163,12 +169,53 @@ export class SignupComponent implements OnInit, AfterViewInit {
       console.log(error);
       Swal.fire(
         'Error!',
-        `${error.message}`,
+        `${error.error}`,
         'error'
       )
     })
 
   }
+
+id: number;
+
+  sendOtp(){
+    var min = 1000000;
+    var max = 9999999;
+    this.id = Math.floor(Math.random() * (max - min + 1)) + min;
+  this.emailAuthenticationService.getOTP(this.id, this.emailFormGroup.value.email).subscribe((res: any) => {
+    console.log("getOTP", res);
+  }, (error: any) => {
+    console.log("error in getOTP: ", error);
+  })
+}
+
+verifyOtp(){
+
+  // var otp = 
+  this.otp.id = this.id;
+  this.otp.otp = this.emailFormGroup.value.otp;
+  this.emailAuthenticationService.sendOTP(this.otp).subscribe((res: any) => {
+    if(res==0){
+      this.optVerified = true;
+      Swal.fire(
+        'Success!',
+        `OTP Verified`,
+        'success'
+      )
+
+    }else{
+      Swal.fire(
+        'Error!',
+        `Invalid OTP!`,
+        'error'
+      )
+    }
+    console.log("sendOTP", res);
+  }, (error: any) => {
+    console.log("error in sendOTP: ", error);
+  })
+}
+
 }
 
 
