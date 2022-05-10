@@ -88,6 +88,10 @@ export class CouriersComponent implements OnInit {
     })
   }
 
+  delete(element: any){
+    console.log("Delete: ", element);
+    this.pkgService.deletePackage(element.id);
+  }
 
   collect(element: any) {
     console.log("element: ", element);

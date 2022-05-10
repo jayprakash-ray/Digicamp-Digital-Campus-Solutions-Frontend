@@ -23,4 +23,8 @@ export class PackageHandlingService {
   public updatePackage(itemDetail: any){
     return this.httpClient.put(`${baseUrl}/package`, itemDetail);
   }
+
+  public deletePackage(id: any){
+    return this.httpClient.delete(`${baseUrl}/package/${id}`);
+  }
 }
