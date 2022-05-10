@@ -90,7 +90,23 @@ export class CouriersComponent implements OnInit {
 
   delete(element: any){
     console.log("Delete: ", element);
-    this.pkgService.deletePackage(element.id);
+    this.pkgService.deletePackage(element.packageNumber).subscribe(
+      (res: any) => {
+        Swal.fire(
+          'Success!',
+          `Package Deleted`,
+          'success'
+        )
+        this.getData();
+      },
+      (error: any) => {
+        Swal.fire(
+          'Delete!',
+          `Package not deleted!`,
+          'error'
+        )
+      }
+    )
   }
 
   collect(element: any) {
