@@ -1,15 +1,17 @@
 ---
 - name: Pull docker image of DigiCamp Frontend
   hosts: all
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
   tasks:
     - name: Stop Docker container
       docker_container: 
-        name: digicamp
+        name: digicamp_frontend
         state: stopped
 
     - name: Remove Docker container
       docker_container: 
-        name: digicamp
+        name: digicamp_frontend
         state: absent 
         
     - name: Remove Docker image
@@ -20,7 +22,7 @@
         
     - name: Pull devops image
       docker_image:
-        name: jpray/digicamp_frontend
+        name: jpray/digicamp_frontend:latest
         source: pull
 
     - name: deploy digicamp docker container
@@ -28,7 +30,6 @@
         image: jpray/digicamp_frontend:latest
         name: digicamp
         state: started
-        auto_remove: true
         ports:
           - "4200:80"
 ... 
