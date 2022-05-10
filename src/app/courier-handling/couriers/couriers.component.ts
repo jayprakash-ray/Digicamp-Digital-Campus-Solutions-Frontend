@@ -12,6 +12,7 @@ import { EmailAuthenticationService } from 'src/app/_services/email-authenticati
 import { OtpDialogComponent } from './otp-dialog/otp-dialog.component';
 import Swal from 'sweetalert2';
 import { OTP } from 'src/app/_interfaces/OTP';
+import { AuthService } from 'src/app/_services/auth.service';
 
 
 @Component({
@@ -26,34 +27,48 @@ export class CouriersComponent implements OnInit {
   courier: any;
   id: any;
   showProgressSpinner:boolean = false;
-  columns: string[] = ['packageNumber', 'OrderId', 'ownerName', 'Courier', 'arrivalDate', 'arrivalTime', 'submit', 'edit', 'delete']
+  role: any;
+  columns: string[] = ['packageNumber', 'OrderId', 'ownerName', 'Courier', 'arrivalDate', 'arrivalTime', 'submit', 'edit', 'delete'];
+  myColumns: string[] = ['packageNumber', 'OrderId', 'ownerName', 'Courier', 'isPicked', 'arrivalDate', 'arrivalTime'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private pkgService: PackageHandlingService,
     public dialog: MatDialog,
-    public emailAuthenticationService: EmailAuthenticationService) {
+    public emailAuthenticationService: EmailAuthenticationService,
+    public authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.getData()
+    this.role = this.authService.getRole();
+    this.getData();
   }
 
   getData(){
-    this.pkgService.getPackages().subscribe(items => {
-      this.courier = items;
-      var unpickedCourier = [];
-      for(var item of this.courier){
-        if(item.isPicked==0){
-          unpickedCourier.push(item);
+    if(this.role==='admin'){
+      this.pkgService.getPackages().subscribe(items => {
+        this.courier = items;
+        var unpickedCourier = [];
+        for(var item of this.courier){
+          if(item.isPicked==0){
+            unpickedCourier.push(item);
+          }
         }
-      }
-      this.courier = unpickedCourier;
-      console.log("items: ", this.courier);
-      this.dataSource = new MatTableDataSource(this.courier)
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    })
+        this.courier = unpickedCourier;
+        console.log("items: ", this.courier);
+        this.dataSource = new MatTableDataSource(this.courier)
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      })
+    }else if(this.role==='student'){
+      this.pkgService.getMyPackages(this.authService.getId()).subscribe(items => {
+        this.courier = items;
+        console.log("items: ", this.courier);
+        this.dataSource = new MatTableDataSource(this.courier)
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      })
+    }
   }
 
   fireSwal(){

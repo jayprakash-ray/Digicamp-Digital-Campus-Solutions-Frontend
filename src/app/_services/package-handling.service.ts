@@ -13,6 +13,10 @@ export class PackageHandlingService {
     return this.httpClient.get(`${baseUrl}/package`);
   }
 
+  public getMyPackages(id: any){
+    return this.httpClient.get(`${baseUrl}/package/${id}`);
+  }
+
   public addPackage(itemDetail: any){
     return this.httpClient.post(`${baseUrl}/package`, itemDetail);
   }

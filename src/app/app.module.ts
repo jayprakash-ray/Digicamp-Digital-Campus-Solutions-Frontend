@@ -13,7 +13,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
-
+// import firebase from 'firebase/compat/app';
+// firebase.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [
