@@ -15,6 +15,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CouriersModule } from './couriers/couriers.module';
 import { UpdateCourierComponent } from './couriers/update-courier/update-courier.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UpdateCourierComponent } from './couriers/update-courier/update-courier
     MatButtonModule,
     MatMenuModule,
     MatDialogModule,
-    CouriersModule
+    CouriersModule,
+    MatSnackBarModule
   ]
 })
 export class CourierHandlingModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Package } from 'src/app/_interfaces/Package';
 import { PackageHandlingService } from 'src/app/_services/package-handling.service';
 
@@ -13,9 +14,21 @@ export class AddCourierComponent implements OnInit {
 
   courier: Package = ({} as any) as Package;
   returnedObj:any;
-  constructor(public PackageHandlingService:PackageHandlingService) { }
+  constructor(public PackageHandlingService:PackageHandlingService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+  }
+
+  snackRef: any;
+  openSnackBar(message: string) {
+    this.snackRef = this._snackBar.open(message);
+  }
+
+  dismiss(snackRef: any){
+    setTimeout(function(){ 
+    snackRef.dismiss();
+    }, 1000);
   }
 
   addCourier(item:any)
@@ -26,12 +39,15 @@ export class AddCourierComponent implements OnInit {
     this.courier.arrivalDate=item.value.arrivalDate;
     this.courier.mobileNo=item.value.mobileNo;
     this.courier.courier=item.value.delpartner;
+    item.reset();
     this.PackageHandlingService.addPackage(this.courier).subscribe((res) => {
       console.log("Item Added: ", res);
       this.returnedObj = res;
+      this.openSnackBar("Package Added");
+      this.dismiss(this.snackRef);
     });
-
   }
+  
   formatDate(date: Date): string {
     var d = new Date(date),
       month = '' + (d.getMonth() + 1),

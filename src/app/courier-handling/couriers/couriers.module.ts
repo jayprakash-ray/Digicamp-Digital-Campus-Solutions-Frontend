@@ -11,11 +11,16 @@ import {MatMenuModule} from '@angular/material/menu';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { OtpDialogComponent } from './otp-dialog/otp-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
     UpdateCourierComponent,
-    CouriersComponent
+    CouriersComponent,
+    OtpDialogComponent
   ],
   imports: [
     CommonModule,
@@ -29,9 +34,9 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
-    ReactiveFormsModule
-
-    
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatProgressSpinnerModule
   ]
 })
 export class CouriersModule { }

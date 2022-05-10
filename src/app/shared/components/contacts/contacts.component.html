@@ -1,0 +1,93 @@
+<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5" style="margin-top: -100px;">
+					<h2 class="heading-section">Hostel Administration & Management:
+					</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table table-responsive-xl">
+							<thead>
+								<tr>
+									<th>&nbsp;</th>
+									<th>Name</th>
+									<th>Designation</th>
+									<th>Email</th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody *ngFor="let contact of contactsHostel">
+								<tr class="alert" role="alert">
+									<td>&nbsp;</td>
+									<td>
+										<div>
+											<b><b>{{contact.name}}</b></b>
+										</div>
+									</td>
+									<td class="d-flex align-items-center">
+										<div class="pl-3 email">
+											<i>{{contact.designation}}</i>
+										</div>
+									</td>
+									<td class="status"><span class="active">{{contact.email}}</span></td>
+									<td>&nbsp;</td>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-3">
+					<h2 class="heading-section">Campus Administration & Students related Matters:
+					</h2>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table table-responsive-xl">
+							<thead>
+								<tr>
+									<th>&nbsp;</th>
+									<th>Name</th>
+									<th>Designation</th>
+									<th>Email</th>
+									<th>&nbsp;</th>
+								</tr>
+							</thead>
+							<tbody *ngFor="let contact of contactsAdministration">
+								<tr class="alert" role="alert">
+									<td>&nbsp;</td>
+									<td>
+										<div>
+											<b><b>{{contact.name}}</b></b>
+										</div>
+									</td>
+									<td class="d-flex align-items-center">
+										<div class="pl-3 email">
+											<i>{{contact.designation}}</i>
+										</div>
+									</td>
+									<td class="status"><span class="waiting">{{contact.email}}</span></td>
+									<td>&nbsp;</td>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+
+</body>

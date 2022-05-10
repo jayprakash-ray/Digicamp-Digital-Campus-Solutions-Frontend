@@ -1,7 +1,8 @@
 <div class="container">
     <mat-grid-list cols="2" gutterSize="20px">
         <mat-grid-tile *ngFor="let item of items">
-            <div class="card" >
+            <div class="card" style="overflow:hidden;height: 600px; padding: 10px;
+            border-radius: 25px;">
                 <app-card [item]="item"></app-card>
             </div>
         </mat-grid-tile>

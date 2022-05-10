@@ -5,9 +5,14 @@ import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Package } from "../../_interfaces/Package";
 import { PackageHandlingService } from '../../_services/package-handling.service';
-import {MatMenuTrigger} from '@angular/material/menu';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { AddCourierComponent } from '../add-courier/add-courier.component';
 import { UpdateCourierComponent } from './update-courier/update-courier.component';
+import { EmailAuthenticationService } from 'src/app/_services/email-authentication.service';
+import { OtpDialogComponent } from './otp-dialog/otp-dialog.component';
+import Swal from 'sweetalert2';
+import { OTP } from 'src/app/_interfaces/OTP';
+import { AuthService } from 'src/app/_services/auth.service';
 
 
 @Component({
@@ -15,26 +20,127 @@ import { UpdateCourierComponent } from './update-courier/update-courier.componen
   templateUrl: './couriers.component.html',
   styleUrls: ['./couriers.component.scss']
 })
-export class CouriersComponent implements OnInit{
+export class CouriersComponent implements OnInit {
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
   dataSource: MatTableDataSource<Package> = new MatTableDataSource();
   sortedPackage: Package[];
   courier: any;
-  columns: string[] = ['packageNumber', 'OrderId', 'ownerName', 'Courier', 'arrivalDate', 'arrivalTime','submit','Actions']
+  id: any;
+  showProgressSpinner:boolean = false;
+  role: any;
+  columns: string[] = ['packageNumber', 'OrderId', 'ownerName', 'Courier', 'arrivalDate', 'arrivalTime', 'submit', 'edit', 'delete'];
+  myColumns: string[] = ['packageNumber', 'OrderId', 'ownerName', 'Courier', 'isPicked', 'arrivalDate', 'arrivalTime'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private pkgService: PackageHandlingService,public dialog: MatDialog) {
+  constructor(private pkgService: PackageHandlingService,
+    public dialog: MatDialog,
+    public emailAuthenticationService: EmailAuthenticationService,
+    public authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.pkgService.getPackages().subscribe(items => {
-      this.courier = items;
-      console.log("items: ", this.courier);
-      this.dataSource = new MatTableDataSource(this.courier)
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    this.role = this.authService.getRole();
+    this.getData();
+  }
+
+  getData(){
+    if(this.role==='admin'){
+      this.pkgService.getPackages().subscribe(items => {
+        this.courier = items;
+        var unpickedCourier = [];
+        for(var item of this.courier){
+          if(item.isPicked==0){
+            unpickedCourier.push(item);
+          }
+        }
+        this.courier = unpickedCourier;
+        console.log("items: ", this.courier);
+        this.dataSource = new MatTableDataSource(this.courier)
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      })
+    }else if(this.role==='student'){
+      this.pkgService.getMyPackages(this.authService.getId()).subscribe(items => {
+        this.courier = items;
+        console.log("items: ", this.courier);
+        this.dataSource = new MatTableDataSource(this.courier)
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      })
+    }
+  }
+
+  fireSwal(){
+
+    Swal.fire({
+      title: 'Sending OTP...',
+      width: 600,
+      padding: '3em',
+      color: '#716add',
+      background: '#fff url(https://sweetalert2.github.io/images/trees.png)',
+      backdrop: `
+        rgba(0,0,123,0.4)
+        url("https://sweetalert2.github.io/images/nyan-cat.gif")
+        left top
+        no-repeat
+      `
     })
+  }
+
+
+  collect(element: any) {
+    console.log("element: ", element);
+    var min = 1000000;
+    var max = 9999999;
+    this.fireSwal();
+    this.id = Math.floor(Math.random() * (max - min + 1)) + min;
+    this.emailAuthenticationService.getEmailOTPFromMobileNumber(this.id, element.mobileNo).subscribe(
+      (res: any) => {
+        Swal.close();
+        const dialogRef = this.dialog.open(OtpDialogComponent, { data: this.id});
+        dialogRef.afterClosed().subscribe(OTP => {
+          if (this.verifyOTP(OTP)) {
+            Swal.fire(
+              'Success!',
+              `OTP Verified`,
+              'success'
+            )
+            element.isPicked = 1;
+            this.pkgService.updatePackage(element).subscribe((res:any) => {
+            }, (error: any) => {
+              console.log("Error in updatePackage", error);
+              this.getData();
+            })
+          } else {
+            Swal.fire(
+              'Error!',
+              `Invalid OTP!`,
+              'error'
+            )
+            this.getData();
+          }
+          console.log(`Dialog result OTP: ${OTP}`);
+        });
+      }, (error: any) => {
+        console.log("error in getOTP: ", error);
+      })
+
+  }
+
+  otp: OTP = ({} as any) as OTP;
+
+  verifyOTP(OTP: any){
+    this.otp.id = this.id;
+    this.otp.otp = OTP;
+    this.emailAuthenticationService.sendOTP(this.otp).subscribe((res: any) => {
+      console.log("VERIFYYYY: ", res);
+      return res;
+    },
+    (error: any) => {
+      console.log(error);
+    })
+    return -1;
   }
 
   openDialog(element: any) {
