@@ -26,7 +26,7 @@ export class CouriersComponent implements OnInit {
   sortedPackage: Package[];
   courier: any;
   id: any;
-  showProgressSpinner:boolean = false;
+  showProgressSpinner: boolean = false;
   role: any;
   columns: string[] = ['packageNumber', 'OrderId', 'ownerName', 'Courier', 'arrivalDate', 'arrivalTime', 'submit', 'actions'];
   myColumns: string[] = ['packageNumber', 'OrderId', 'ownerName', 'Courier', 'isPicked', 'arrivalDate', 'arrivalTime'];
@@ -44,13 +44,13 @@ export class CouriersComponent implements OnInit {
     this.getData();
   }
 
-  getData(){
-    if(this.role==='admin'){
+  getData() {
+    if (this.role === 'admin') {
       this.pkgService.getPackages().subscribe(items => {
         this.courier = items;
         var unpickedCourier = [];
-        for(var item of this.courier){
-          if(item.isPicked==0){
+        for (var item of this.courier) {
+          if (item.isPicked == 0) {
             unpickedCourier.push(item);
           }
         }
@@ -60,7 +60,7 @@ export class CouriersComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       })
-    }else if(this.role==='student'){
+    } else if (this.role === 'student') {
       this.pkgService.getMyPackages(this.authService.getId()).subscribe(items => {
         this.courier = items;
         console.log("items: ", this.courier);
@@ -71,7 +71,7 @@ export class CouriersComponent implements OnInit {
     }
   }
 
-  fireSwal(){
+  fireSwal() {
 
     Swal.fire({
       title: 'Sending OTP...',
@@ -88,25 +88,36 @@ export class CouriersComponent implements OnInit {
     })
   }
 
-  delete(element: any){
+  delete(element: any) {
     console.log("Delete: ", element);
-    this.pkgService.deletePackage(element.packageNumber).subscribe(
-      (res: any) => {
-        Swal.fire(
-          'Success!',
-          `Package Deleted`,
-          'success'
+    Swal.fire({
+      title: `Are you sure, you want to delete package number ${element.packageNumber}?`,
+      showDenyButton: true,
+      confirmButtonText: 'Cancel',
+      denyButtonText: `Delete`,
+    }).then((result: any) => {
+      if (!result.isConfirmed) {
+        this.pkgService.deletePackage(element.packageNumber).subscribe(
+          (res: any) => {
+            Swal.fire(
+              'Success!',
+              `Package Deleted`,
+              'success'
+            )
+            this.getData();
+          },
+          (error: any) => {
+            Swal.fire(
+              'Delete!',
+              `Package not deleted!`,
+              'error'
+            )
+          }
         )
-        this.getData();
-      },
-      (error: any) => {
-        Swal.fire(
-          'Delete!',
-          `Package not deleted!`,
-          'error'
-        )
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
       }
-    )
+    }) 
   }
 
   collect(element: any) {
@@ -118,7 +129,7 @@ export class CouriersComponent implements OnInit {
     this.emailAuthenticationService.getEmailOTPFromMobileNumber(this.id, element.mobileNo).subscribe(
       (res: any) => {
         Swal.close();
-        const dialogRef = this.dialog.open(OtpDialogComponent, { data: this.id});
+        const dialogRef = this.dialog.open(OtpDialogComponent, { data: this.id });
         dialogRef.afterClosed().subscribe(OTP => {
           if (this.verifyOTP(OTP)) {
             Swal.fire(
@@ -127,7 +138,7 @@ export class CouriersComponent implements OnInit {
               'success'
             )
             element.isPicked = 1;
-            this.pkgService.updatePackage(element).subscribe((res:any) => {
+            this.pkgService.updatePackage(element).subscribe((res: any) => {
             }, (error: any) => {
               console.log("Error in updatePackage", error);
               this.getData();
@@ -150,16 +161,16 @@ export class CouriersComponent implements OnInit {
 
   otp: OTP = ({} as any) as OTP;
 
-  verifyOTP(OTP: any){
+  verifyOTP(OTP: any) {
     this.otp.id = this.id;
     this.otp.otp = OTP;
     this.emailAuthenticationService.sendOTP(this.otp).subscribe((res: any) => {
       console.log("VERIFYYYY: ", res);
       return res;
     },
-    (error: any) => {
-      console.log(error);
-    })
+      (error: any) => {
+        console.log(error);
+      })
     return -1;
   }
 
