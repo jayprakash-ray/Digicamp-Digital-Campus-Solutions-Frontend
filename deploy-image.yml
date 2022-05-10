@@ -15,20 +15,20 @@
     - name: Remove Docker image
       docker_image:
         state: absent
-        name: khushalabrol2000/digicamp-frontend
+        name: jpray/digicamp_frontend
         tag: latest 
         
     - name: Pull devops image
       docker_image:
-        name: khushalabrol2000/digicamp-frontend
+        name: jpray/digicamp_frontend
         source: pull
 
     - name: deploy digicamp docker container
       docker_container:
-        image: khushalabrol2000/digicamp-frontend:latest
+        image: jpray/digicamp_frontend:latest
         name: digicamp
         state: started
         auto_remove: true
         ports:
-          - "3221:80"
+          - "4200:80"
 ... 
