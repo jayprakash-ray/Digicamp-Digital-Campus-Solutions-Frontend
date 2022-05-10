@@ -28,7 +28,7 @@ export class AddCourierComponent implements OnInit {
   dismiss(snackRef: any){
     setTimeout(function(){ 
     snackRef.dismiss();
-    }, 1000);
+    }, 2500);
   }
 
   addCourier(item:any)
