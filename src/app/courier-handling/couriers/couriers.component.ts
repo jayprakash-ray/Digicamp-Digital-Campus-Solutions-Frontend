@@ -28,7 +28,7 @@ export class CouriersComponent implements OnInit {
   id: any;
   showProgressSpinner:boolean = false;
   role: any;
-  columns: string[] = ['packageNumber', 'OrderId', 'ownerName', 'Courier', 'arrivalDate', 'arrivalTime', 'submit', 'edit', 'delete'];
+  columns: string[] = ['packageNumber', 'OrderId', 'ownerName', 'Courier', 'arrivalDate', 'arrivalTime', 'submit', 'actions'];
   myColumns: string[] = ['packageNumber', 'OrderId', 'ownerName', 'Courier', 'isPicked', 'arrivalDate', 'arrivalTime'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

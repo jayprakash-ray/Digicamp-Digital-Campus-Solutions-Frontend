@@ -1,6 +1,6 @@
 table {
   width: 100%;
-  border: 1px solid currentColor;
+  // border: 1px solid currentColor;
 }
 .mat-form-field {
   font-size: 14px;
@@ -9,8 +9,8 @@ table {
 }
 .mat-header-row
 {
-  width: 32px;
+  width: 100%;
   text-align: center;
   font-weight: bold;
-  border: 1px solid currentColor;
+  // border: 1px solid currentColor;
 }

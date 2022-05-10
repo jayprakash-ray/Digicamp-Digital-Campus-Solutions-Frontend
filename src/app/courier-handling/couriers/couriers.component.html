@@ -33,7 +33,7 @@
       <th mat-header-cell *matHeaderCellDef> Collect </th>
       <td mat-cell *matCellDef="let row"><button mat-raised-button color="primary" (click)="collect(row)">Collect</button></td>
     </ng-container>
-    <ng-container matColumnDef="Actions" stickyEnd>
+    <ng-container matColumnDef="actions" stickyEnd>
       <th mat-header-cell *matHeaderCellDef>Actions</th>
       <td mat-cell *matCellDef="let row">
         <button mat-raised-button (click)="openDialog(row)"><mat-icon>edit</mat-icon></button>&nbsp;
