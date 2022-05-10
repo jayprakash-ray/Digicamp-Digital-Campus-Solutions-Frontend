@@ -159,11 +159,11 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
     this.loginService.createUser(this.user).subscribe((res: any) => {
       console.log("user create");
-      Swal.fire(
-        'User Created!',
-        '',
-        'success'
-      )
+      // Swal.fire(
+      //   'User Created!',
+      //   '',
+      //   'success'
+      // )
       this.route.navigate(['/login']);
     }, (error: any) => {
       console.log(error);

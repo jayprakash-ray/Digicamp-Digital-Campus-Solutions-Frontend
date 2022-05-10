@@ -16,7 +16,7 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
 
     this.date = this.formatDate(this.item.date);
-    console.log("CARD ITEM: ", this.item);
+    // console.log("CARD ITEM: ", this.item);
   }
 
   formatDate(date: Date): string {
