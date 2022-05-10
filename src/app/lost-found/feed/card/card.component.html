@@ -3,14 +3,18 @@
     <img (click)="zoomImage()" src="{{item.itemImage}}" onerror="this.onerror=null; this.src='https\://firebasestorage.googleapis.com/v0/b/digicamp-backend.appspot.com/o/Image_not_available.png?alt=media&token=0069c06d-c020-4014-8667-ff11ac92c431'" class="img-fluid" height="300px" width="100%"/>
   </div>
   <div class="head">
-    <h3 class="card-title"><b>{{item.itemName}}</b><mat-chip style="background-color: red;" *ngIf="item.lostOrFound==0">Lost
+    <h3 class="card-title"><b>{{item.itemName}}</b> &nbsp; <mat-chip style="background-color: red;" *ngIf="item.lostOrFound==0">Lost
     </mat-chip>
     <mat-chip style="background-color: green;" *ngIf="item.lostOrFound==1" color="accent">Found</mat-chip>
   </h3>
   </div>
   <div class="content">
     <div class="row">
-      <div class="col-8">
+      <div class="col-8" *ngIf="item.lostOrFound==0">
+        <p class="card-text">
+        <div><b>Lost At:</b> {{item.foundAt}}</div>
+      </div>
+      <div class="col-8" *ngIf="item.lostOrFound==1">
         <p class="card-text">
         <div><b>Found On:</b> {{date}}</div>
         <div><b>Found At:</b> {{item.foundAt}}</div>

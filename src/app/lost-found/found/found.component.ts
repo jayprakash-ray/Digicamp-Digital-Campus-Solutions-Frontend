@@ -19,6 +19,7 @@ export class FoundComponent implements OnInit {
   currentFileUpload?: FileUpload;
   percentage = 0;
   fileUploads?: any[];
+  showImage: boolean = false;
   @Output() changeTab = new EventEmitter<string>();
   
   constructor(private _sanitizer: DomSanitizer, private firebaseService: FirebaseService, public lostAndFoundService: LostFoundService) { }
@@ -34,6 +35,8 @@ export class FoundComponent implements OnInit {
     this.item.lostOrFound = 1;
     this.item.remarks = foundItem.value.remark;
     this.item.collectFrom = foundItem.value.collectFrom;
+    foundItem.reset();
+    this.showImage = false;
     this.lostAndFoundService.addItem(this.item).subscribe((res) => {
       console.log("Item Added: ", res);
       this.returnedObj = res;
@@ -43,6 +46,7 @@ export class FoundComponent implements OnInit {
   }
 
   selectFile(event: any): void {
+    this.showImage = true;
     this.selectedFiles = event.target.files;
     this.handleFileSelect(event);
   }

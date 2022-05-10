@@ -36,6 +36,7 @@ export class LostComponent implements OnInit {
     this.item.remarks = lostItem.value.remark;
 
     console.log("this.item: ", this.item);
+    lostItem.reset();
     this.lostAndFoundService.addItem(this.item).subscribe(res => {
       console.log("Lost Item Added: ", res);
       this.returnedObj = res;
