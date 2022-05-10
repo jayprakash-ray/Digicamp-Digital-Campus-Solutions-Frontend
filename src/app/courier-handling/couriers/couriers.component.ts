@@ -93,10 +93,12 @@ export class CouriersComponent implements OnInit {
     Swal.fire({
       title: `Are you sure, you want to delete package number ${element.packageNumber}?`,
       showDenyButton: true,
-      confirmButtonText: 'Cancel',
-      denyButtonText: `Delete`,
+      confirmButtonText: 'Delete',
+      denyButtonText: `Cancle`,
+      confirmButtonColor: '#e50000',
+      denyButtonColor: '#3f51b5',
     }).then((result: any) => {
-      if (!result.isConfirmed) {
+      if (result.isConfirmed) {
         this.pkgService.deletePackage(element.packageNumber).subscribe(
           (res: any) => {
             Swal.fire(
@@ -114,8 +116,6 @@ export class CouriersComponent implements OnInit {
             )
           }
         )
-      } else if (result.isDenied) {
-        Swal.fire('Changes are not saved', '', 'info')
       }
     }) 
   }
