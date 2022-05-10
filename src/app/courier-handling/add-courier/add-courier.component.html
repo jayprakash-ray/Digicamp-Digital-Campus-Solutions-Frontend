@@ -8,7 +8,7 @@
                 <div class="col-6">
                     <mat-form-field style="width:30vw" appearance="outline">
                         <mat-label>Owner Name</mat-label>
-                        <input matInput ngModel name="ownerName" placeholder="Owner Name">
+                        <input matInput ngModel name="ownerName" placeholder="Owner Name" required>
                         <mat-icon matSuffix>accessibility_new</mat-icon>
                         <mat-hint>Ex. Jayprakash</mat-hint>
                     </mat-form-field>
@@ -16,7 +16,7 @@
                 <div class="col-6">
                     <mat-form-field style="width:30vw" appearance="outline">
                         <mat-label>Mobile Number</mat-label>
-                        <input matInput ngModel name="mobileNo" placeholder="Mobile Numer" pattern="[6789][0-9]{9}">
+                        <input matInput ngModel name="mobileNo" placeholder="Mobile Numer" pattern="[6789][0-9]{9}" required>
                         <mat-icon matSuffix>contact_phone</mat-icon>
                         <mat-hint>Ex. 913213892</mat-hint>
                     </mat-form-field>
