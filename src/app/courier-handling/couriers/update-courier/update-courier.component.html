@@ -16,7 +16,7 @@
                 <div class="col-6">
                     <mat-form-field style="width:30vw" appearance="outline">
                         <mat-label>Mobile Number</mat-label>
-                        <input matInput ngModel name="mobileNo" placeholder="Mobile Numer" pattern="[6789][0-9]{9}">
+                        <input matInput [(ngModel)]="courier.mobileNo" ngModel name="mobileNo" placeholder="Mobile Numer" pattern="[6789][0-9]{9}">
                         <mat-icon matSuffix>contact_phone</mat-icon>
                         <mat-hint>Ex. 913213892</mat-hint>
                     </mat-form-field>
@@ -26,7 +26,7 @@
                 <div class="col-6">
                     <mat-form-field style="width:30vw" appearance="outline">
                         <mat-label>Delivery Partner</mat-label>
-                        <input matInput ngModel name="delpartner" placeholder="Delivery Partner">
+                        <input matInput [(ngModel)]="courier.courier" ngModel name="delpartner" placeholder="Delivery Partner">
                         <mat-icon matSuffix>accessible</mat-icon>
                         <mat-hint>Ex. 913213892</mat-hint>
                     </mat-form-field>
@@ -34,7 +34,7 @@
                 <div class="col-6">
                     <mat-form-field style="width:30vw" appearance="outline">
                         <mat-label>Order ID</mat-label>
-                        <input matInput ngModel name="orderId" placeholder="Order ID">
+                        <input matInput [(ngModel)]="courier.orderId" ngModel name="orderId" placeholder="Order ID">
                         <mat-icon matSuffix>new_releases</mat-icon>
                         <mat-hint>Ex. 913213892</mat-hint>
                     </mat-form-field>
@@ -44,7 +44,7 @@
                 <div class="col-6">
                     <mat-form-field style="width:30vw" appearance="outline">
                         <mat-label>Arrived Date</mat-label>
-                        <input matInput ngModel name="arrivalDate" type="datetime-local" placeholder="Arrival date">
+                        <input matInput [(ngModel)]="courier.arrivalDate"  ngModel name="arrivalDate" type="datetime-local" placeholder="Arrival date">
                         <mat-hint>Ex. Choose Date</mat-hint>
                     </mat-form-field>
                 </div>

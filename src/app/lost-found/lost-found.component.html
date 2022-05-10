@@ -1,13 +1,14 @@
 <div class="container mat-elevation-z10">
-    <mat-tab-group mat-align-tabs="center" [color]="'warn'">
+    <mat-tab-group mat-align-tabs="center" [color]="'warn'" (selectedTabChange)="reloadFeed($event)"
+        [selectedIndex]="tabIndex" (selectedIndexChange)="tabIndex=$event">
         <mat-tab label="Feed">
-            <app-feed></app-feed>
+            <app-feed [items]="items"></app-feed>
         </mat-tab>
         <mat-tab label="Lost">
-            <app-lost></app-lost>
+            <app-lost (changeTab)="changeTab()"></app-lost>
         </mat-tab>
         <mat-tab label="Found">
-            <app-found></app-found>
+            <app-found (changeTab)="changeTab()"></app-found>
         </mat-tab>
     </mat-tab-group>
 </div>

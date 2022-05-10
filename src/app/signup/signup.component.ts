@@ -13,7 +13,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 // import { AngularFireAuth } from '@angular/fire/auth';
 // import { AngularFirestore } from '@angular/fire/firestore';
 // import { AngularFireDatabaseModule } from '@angular/fire/database';
-import Swal from 'sweetalert2'; 
+
+
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -153,19 +154,19 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
     this.loginService.createUser(this.user).subscribe( (res: any) => {
       console.log("user create");
-      Swal.fire(
-        'User Created!',
-        '',
-        'success'
-      )
+      // Swal.fire(
+      //   'User Created!',
+      //   '',
+      //   'success'
+      // )
       this.route.navigate(['/login']);
     }, (error: any) => {
       console.log(error);
-      Swal.fire(
-        'Error!',
-        `${error.message}`,
-        'error'
-      )
+      // Swal.fire(
+      //   'Error!',
+      //   `${error.message}`,
+      //   'error'
+      // )
     })
 
   }

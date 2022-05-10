@@ -20,7 +20,7 @@ export class CouriersComponent implements OnInit{
   dataSource: MatTableDataSource<Package> = new MatTableDataSource();
   sortedPackage: Package[];
   courier: any;
-  columns: string[] = ['packageNumber', 'OrderId', 'ownerName', 'Courier', 'arrivalDate', 'arrivalTime','submit','edit','delete']
+  columns: string[] = ['packageNumber', 'OrderId', 'ownerName', 'Courier', 'arrivalDate', 'arrivalTime','submit','Actions']
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 

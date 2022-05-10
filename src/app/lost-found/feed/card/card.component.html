@@ -1,7 +1,7 @@
 <div class="card mat-elevation-z10">
 
   <div class="container" style="height: fit-content; margin-top: 50px;">
-    <img src="{{item.itemImage}}" onerror="this.onerror=null; this.src='https\://firebasestorage.googleapis.com/v0/b/digicamp-backend.appspot.com/o/uploads%2FImage_not_available.png?alt=media&token=bb789927-94d9-438e-9d3c-bcdb12a1f613'" class="img-fluid" height="300px" width="100%"/>
+    <img (click)="zoomImage()" src="{{item.itemImage}}" onerror="this.onerror=null; this.src='https\://firebasestorage.googleapis.com/v0/b/digicamp-backend.appspot.com/o/Image_not_available.png?alt=media&token=0069c06d-c020-4014-8667-ff11ac92c431'" class="img-fluid" height="300px" width="100%"/>
   </div>
 
   <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
@@ -22,7 +22,7 @@
         <div><b>Collect From:</b> {{item.collectFrom}}</div>
       </div>
       <div class="col-4">
-        <a href="#!" class="collect-btn btn btn-primary">Collect</a>
+        <a class="collect-btn btn btn-primary" (click)="collectItem()">Collect</a>
       </div>
     </div>
     <div>
