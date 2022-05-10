@@ -1,0 +1,32 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+// import { baseUrl } from './.src/environments/environment';
+import {baseUrl} from './../../../src/environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EmailAuthenticationService {
+
+  constructor(private http:HttpClient) { }
+  
+  // sendEmail(data:any)
+  // {
+  //     return this.http.post(`${baseUrl}/sendemail`,data)
+  // }
+
+  getOTP(id: any, email: any)
+  {
+      return this.http.get(`${baseUrl}/OTP/email/${id}/${email}`);
+  }
+
+  sendOTP(otp: any){
+    return this.http.post(`${baseUrl}/OTP`, otp);  
+  }
+
+  getEmailOTPFromMobileNumber(id: any, mobile: any){
+    return this.http.get(`${baseUrl}/OTP/mobile/${id}/${mobile}`);
+  }
+
+}
+
