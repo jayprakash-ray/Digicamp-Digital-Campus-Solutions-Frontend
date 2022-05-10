@@ -13,10 +13,18 @@ export class PackageHandlingService {
     return this.httpClient.get(`${baseUrl}/package`);
   }
 
+  public getMyPackages(id: any){
+    return this.httpClient.get(`${baseUrl}/package/${id}`);
+  }
+
   public addPackage(itemDetail: any){
     return this.httpClient.post(`${baseUrl}/package`, itemDetail);
   }
   public updatePackage(itemDetail: any){
     return this.httpClient.put(`${baseUrl}/package`, itemDetail);
+  }
+
+  public deletePackage(id: any){
+    return this.httpClient.delete(`${baseUrl}/package/${id}`);
   }
 }

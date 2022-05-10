@@ -7,4 +7,5 @@ export interface Item {
     itemName: string, 
     lostOrFound: number, 
     remarks: string
+    isCollected: boolean;
 }

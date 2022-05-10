@@ -11,7 +11,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { environment } from 'src/environments/environment';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatDialogModule } from '@angular/material/dialog';
+// import firebase from 'firebase/compat/app';
+// firebase.initializeApp(environment.firebase);
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     MatFormFieldModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

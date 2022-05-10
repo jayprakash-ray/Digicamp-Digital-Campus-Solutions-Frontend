@@ -1,6 +1,7 @@
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LostFoundService } from 'src/app/_services/lost-found.service';
+import { Item } from "src/app/_interfaces/Item";
 
 @Component({
   selector: 'app-feed',
@@ -9,15 +10,19 @@ import { LostFoundService } from 'src/app/_services/lost-found.service';
 })
 export class FeedComponent implements OnInit {
 
-  items: any;
-  constructor(public lfService: LostFoundService) { }
+  @Input() items: any;
+  constructor() { }
 
   ngOnInit(): void {
-    this.lfService.getItems().subscribe(items => {
-      this.items = items;
-      console.log("items: ", items);
-    })
+    // this.getItems();
   }
+
+  // getItems(){
+  //   this.lfService.getItems().subscribe(items => {
+  //     this.items = items;
+  //     console.log("items: ", items);
+  //   })
+  // }
 
 
 // // Create a reference to the file we want to download
