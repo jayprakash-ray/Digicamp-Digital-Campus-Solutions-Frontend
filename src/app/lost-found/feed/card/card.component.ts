@@ -14,8 +14,9 @@ export class CardComponent implements OnInit {
   date: any;
   // defaultImage = '.';
   ngOnInit(): void {
+
     this.date = this.formatDate(this.item.date);
-    // console.log("CARD ITEM: ", this.item);
+    console.log("CARD ITEM: ", this.item);
   }
 
   formatDate(date: Date): string {
@@ -40,7 +41,8 @@ export class CardComponent implements OnInit {
       imageUrl: `${this.item.itemImage}`,
       imageWidth: 1000,
       // imageHeight: 500,
-      imageAlt: 'Custom image',
+      imageAlt: 'image',
+      text: `${this.item.remarks}`,
     })
   }
 
