@@ -5,10 +5,10 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3
   tasks:
-    - name: Stop Docker container
-      docker_container: 
-        name: digicamp_frontend
-        state: stopped
+#     - name: Stop Docker container
+#       docker_container: 
+#         name: digicamp_frontend
+#         state: stopped
 
     - name: Remove Docker container
       docker_container: 
