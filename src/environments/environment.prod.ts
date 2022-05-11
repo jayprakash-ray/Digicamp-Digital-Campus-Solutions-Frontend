@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
+  production: true,
   firebase: {
     apiKey: "AIzaSyCpRzDbmNoRM7bYpewJ-uhoOYN_9F26q1o",
     authDomain: "digicamp-backend.firebaseapp.com",
@@ -12,4 +12,4 @@ export const environment = {
   }
 };
 
-export const baseUrl = `http://172.16.131.123:9090`;
+export const baseUrl = `http://20.69.103.131:9090`;

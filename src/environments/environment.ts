@@ -16,7 +16,7 @@ export const environment = {
   }
 };
 
-export const baseUrl = `http://172.16.131.123:9090`;
+export const baseUrl = `http://localhost:9090`;
 
 /*
  * For easier debugging in development mode, you can import the following file
