@@ -31,7 +31,6 @@
         image: jpray/digicamp_frontend:latest
         name: digicamp_frontend
         state: started
-        auto_remove: true
         ports:
           - "8090:80"
 ... 
