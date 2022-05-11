@@ -5,21 +5,21 @@
   vars:
     ansible_python_interpreter: /usr/bin/python3
   tasks:
-#     - name: Stop Docker container
-#       docker_container: 
-#         name: digicamp_frontend
-#         state: stopped
+    - name: Stop Docker container
+      docker_container: 
+        name: digicamp_frontend
+        state: stopped
 
-#     - name: Remove Docker container
-#       docker_container: 
-#         name: digicamp_frontend
-#         state: absent 
+    - name: Remove Docker container
+      docker_container: 
+        name: digicamp_frontend
+        state: absent 
         
-#     - name: Remove Docker image
-#       docker_image:
-#         state: absent
-#         name: jpray/digicamp_frontend:latest
-#         tag: latest 
+    - name: Remove Docker image
+      docker_image:
+        state: absent
+        name: jpray/digicamp_frontend:latest
+        tag: latest 
         
     - name: Pull devops image
       docker_image:
