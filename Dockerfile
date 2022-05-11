@@ -1,11 +1,10 @@
-# pulling base image
-FROM node:latest as node
-# Setting the remote DIR to /app
-WORKDIR /digicamp_frontend
-ENV PATH="./node_modules/.bin:$PATH"
-# COPY the current folder
-COPY . .
-# run npm i (install all the dependencies)
+FROM node:16.10-alpine AS build
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
 RUN npm install
-# this will generate dist
+COPY . .
 RUN npm run build --prod
+### STAGE 2: Run ###
+FROM nginx:1.17.1-alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /usr/src/app/dist/digicamp-frontend /usr/share/nginx/html
